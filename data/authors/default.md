@@ -1,16 +1,16 @@
 ---
-name: Tails Azimuth
+name: Chris Postma
 avatar: /static/images/avatar.png
-occupation: Professor of Atmospheric Science
-company: Stanford University
-email: address@yoursite.com
-twitter: https://twitter.com/Twitter
-linkedin: https://www.linkedin.com
-github: https://github.com
+occupation: Software Engineer
+company: Gambyt
+email: cjrpostma@gmail.com
+twitter: https://twitter.com/cjrpostma
+linkedin: https://www.linkedin.com/in/cjrpostma
+github: https://github.com/cjrpostma
 ---
 
-Tails Azimuth is a professor of atmospheric sciences at the Stanford AI Lab. His research interests includes complexity modelling of tailwinds, headwinds and crosswinds.
+Chris Postma is a software engineer backed by ten years of experience in data management and research administration in the fields of biostatistics and healthcare.
 
-He leads the clean energy group which develops 3D air pollution-climate models, writes differential equation solvers, and manufactures titanium plated air ballons. In his free time he bakes raspberry pi.
+He is known for transforming requirements into working, maintainable code through collaboration and ownership of his work and for showing up as an engaged and compassionate colleague.
 
-Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed neque elit, tristique placerat feugiat ac, facilisis vitae arcu. Proin eget egestas augue. Praesent ut sem nec arcu pellentesque aliquet. Duis dapibus diam vel metus tempus vulputate.
+Through his practice of pragmatism, simplicity, and mentorship, he strengthens the teams and code repositories to which he contributes.
