@@ -1,141 +1,129 @@
 ---
-title: Deriving the OLS Estimator
-date: '2020-12-21'
-tags: ['next js', 'math', 'ols']
+title: Reflecting on learning processes
+date: '2019-12-27'
+tags: ['meta-learning']
 draft: false
-summary: 'How to derive the OLS Estimator with matrix notation and a tour of math typesetting using markdown with the help of KaTeX.'
+summary: 'I recently became interested in the idea of meta learning, the idea of learning how to become better at learning. I explore various materials and write about the process I have developed for myself.'
 ---
 
-# Introduction
+I'm preparing myself to attend the Turing School of Software and Design in Denver, CO. This is an intense, full-time, seven-month training program. The intensity comes in the form of a fire hose of information aimed directly at your brain each day and multiple, overlapping projects at night, resulting in 60-80 hour weeks for the duration of the program. One needs only to check the reviews to attempt to understand the intensity of the program.
 
-Parsing and display of math equations is included in this blog template. Parsing of math is enabled by `remark-math` and `rehype-katex`.
-KaTeX and its associated font is included in `_document.js` so feel free to use it on any page.
-^[For the full list of supported TeX functions, check out the [KaTeX documentation](https://katex.org/docs/supported.html)]
+I chose to attend Turing because I'm interested in learning topics deeply. I enjoy craftsmanship, and to me, that means appreciating your craft and enthusiastically seeking to understand concepts even when your application already works because you know it can be written more efficiently. I'm not content to merely graduate from Turing, I want to absorb it. I want to collect and own the skills, practice them, and become fluent.
 
-Inline math symbols can be included by enclosing the term between the `$` symbol.
+I've therefore become interested in any material that will bolster my ability to learn quickly. Here's what I've read so far and the software I've chosen to utilize as a result. This post is more of a reminder to myself to continue practicing and cultivating my ability to learn.
 
-Math code blocks are denoted by `$$`.
+For a TLDR of my personal process, just scroll to the bottom.
 
-If you intend to use the `$` sign instead of math, you can escape it (`\$`), or specify the HTML entity (`&dollar;`) [^2]
+## Materials
 
-Inline or manually enumerated footnotes are also supported. Click on the links above to see them in action.
+- Deep Work by Cal Newport
+- A Mind For Numbers by Barbara Oakley
+- On Learning by Josh Thompson
+- Learning Fluency by Sara Simon
+- Getting Better at Difficult Things by Ta-Nehisi Coates
+- Making Badass Developers by Kathy Sierra
 
-[^2]: \$10 and &dollar;20.
+## Software
 
-# Deriving the OLS Estimator
+- Anki Flashcards
+- Be Focused Timer
+- Obsidian
 
-Using matrix notation, let $n$ denote the number of observations and $k$ denote the number of regressors.
+## Ideas
 
-The vector of outcome variables $\mathbf{Y}$ is a $n \times 1$ matrix,
+After consuming these materials, I noticed that there is an overlap in the advice each resource provides. The following are the key ideas I've taken from each resource in a summary format.
 
-```tex
-\mathbf{Y} = \left[\begin{array}
-  {c}
-  y_1 \\
-  . \\
-  . \\
-  . \\
-  y_n
-\end{array}\right]
-```
+#### 1. Build a distraction-free space
 
-$$
-\mathbf{Y} = \left[\begin{array}
-  {c}
-  y_1 \\
-  . \\
-  . \\
-  . \\
-  y_n
-\end{array}\right]
-$$
+Both A Mind For Numbers and Deep Work explicitly state the importance of having a discrete, distraction-free space available. This should be a space that is quiet and where you will not be interrupted for as long as you decide to remain there. For me, it is a home office. I could also see this space being in a library or co-working space. The important attributes are that the space is quiet and that it is arranged in a manner that supports your prolonged concentration.
 
-The matrix of regressors $\mathbf{X}$ is a $n \times k$ matrix (or each row is a $k \times 1$ vector),
+In my space, I ensure it has all of the necessary supplies to last throughout my entire work session. This includes pens, paper, food, and beverages. The goal is to remain in a state of deep concentration, without interruption. If I feel I may need to reference a book during my session, I ensure that book is in my office before starting. You probably get the picture, the space should contain everything to support you and your work so that you're not interrupting yourself. To me, it's somewhat reminiscent of the culture in lean manufacturing, where everything has its place. I remove the mental load of tracking resources because they're always in the exact same place and my efficiency is increased.
 
-```latex
-\mathbf{X} = \left[\begin{array}
-  {ccccc}
-  x_{11} & . & . & . & x_{1k} \\
-  . & . & . & . & .  \\
-  . & . & . & . & .  \\
-  . & . & . & . & .  \\
-  x_{n1} & . & . & . & x_{nn}
-\end{array}\right] =
-\left[\begin{array}
-  {c}
-  \mathbf{x}'_1 \\
-  . \\
-  . \\
-  . \\
-  \mathbf{x}'_n
-\end{array}\right]
-```
+To that end, my space is also free of distractions. I do not bring my phone into my designated distraction-free space. Any application that has notifications on my laptop has notifications disabled. If someone else is home and could potentially interrupt my work, I notify them that I am starting a deep work session and they understand not to interrupt me. I keep the door to my office closed. If you're trying to concentrate at work, putting up a sign to not interrupt you can also be effective.
 
-$$
-\mathbf{X} = \left[\begin{array}
-  {ccccc}
-  x_{11} & . & . & . & x_{1k} \\
-  . & . & . & . & .  \\
-  . & . & . & . & .  \\
-  . & . & . & . & .  \\
-  x_{n1} & . & . & . & x_{nn}
-\end{array}\right] =
-\left[\begin{array}
-  {c}
-  \mathbf{x}'_1 \\
-  . \\
-  . \\
-  . \\
-  \mathbf{x}'_n
-\end{array}\right]
-$$
+It is important to have this space designated ahead of time. Take the time to make it your own space and use the same space each day. This comes into play later when it comes to avoiding procrastination through the use of routines and rituals. You must reduce friction and barriers to getting work done. If each day you must designate a new space, that in itself adds friction to entering a state of deep concentration.
 
-The vector of error terms $\mathbf{U}$ is also a $n \times 1$ matrix.
+#### 2. Create a routine
 
-At times it might be easier to use vector notation. For consistency, I will use the bold small x to denote a vector and capital letters to denote a matrix. Single observations are denoted by the subscript.
+Perhaps the most important thing you can do to improve learning efficiency is to prioritize distraction-free time. You cannot, however, rely on willpower alone to achieve this. Research has shown that humans have a limited reserve of willpower to spend each day. Every single small decision chips away at the daily reserve. Removing these small decisions and eventually forming habits allows one to short circuit the use of willpower, or at the very least, more easily skip over it.
 
-## Least Squares
+The idea is to create a routine and use rituals to replace willpower. The techniques to do this are as follows.
 
-**Start**:  
-$$y_i = \mathbf{x}'_i \beta + u_i$$
+**Plan your time**
 
-**Assumptions**:
+I follow Cal Newport's rhythmic philosophy. I schedule deep work into my day ahead of time via Google calendar. When I start my day, there is no doubt about when I will begin a block of deep work time. This removes a lot of mental friction and helps me to avoid procrastination.
 
-1. Linearity (given above)
-2. $E(\mathbf{U}|\mathbf{X}) = 0$ (conditional independence)
-3. rank($\mathbf{X}$) = $k$ (no multi-collinearity i.e. full rank)
-4. $Var(\mathbf{U}|\mathbf{X}) = \sigma^2 I_n$ (Homoskedascity)
+**Make tomorrow's todo list today**
 
-**Aim**:  
-Find $\beta$ that minimises the sum of squared errors:
+At the end of each day, before I finish working, I write down exactly what I will work on the following day and how much time I will allocate to each item on the list. This again reduces friction the following day. It also allows me to relax at night because I know what to expect the following day. This also ties into another idea, known as diffuse thinking, that Barbara Oakley describes in A Mind For Numbers. The act of placing something in the back of your mind allows you to think about it diffusely. In other words, I am priming my mental pump for the following day. This is the same phenomenon that we often hear people describe when they mention how their best ideas come to them when they're not searching for them. For example, when out for a run or taking a shower.
 
-$$
-Q = \sum_{i=1}^{n}{u_i^2} = \sum_{i=1}^{n}{(y_i - \mathbf{x}'_i\beta)^2} = (Y-X\beta)'(Y-X\beta)
-$$
+**Set ambitious goals**
 
-**Solution**:  
-Hints: $Q$ is a $1 \times 1$ scalar, by symmetry $\frac{\partial b'Ab}{\partial b} = 2Ab$.
+It is far easier to say no to distractions in pursuit of a goal than it is to say no just for the sake of saying no. I've set goals for myself and I keep them on display in my workspace to remind me of why I'm working so hard. One of my wildly ambitious goals is to obtain a career that is fulfilling, challenging, and that makes me feel as though I am meeting my own definition of success. If I find myself struggling one day, it is helpful to look up and see my goal to remind myself to enjoy the struggle.
 
-Take matrix derivative w.r.t $\beta$:
+**Set a stop time each day**
 
-```tex
-\begin{aligned}
-  \min Q           & = \min_{\beta} \mathbf{Y}'\mathbf{Y} - 2\beta'\mathbf{X}'\mathbf{Y} +
-  \beta'\mathbf{X}'\mathbf{X}\beta \\
-                   & = \min_{\beta} - 2\beta'\mathbf{X}'\mathbf{Y} + \beta'\mathbf{X}'\mathbf{X}\beta \\
-  \text{[FOC]}~~~0 & =  - 2\mathbf{X}'\mathbf{Y} + 2\mathbf{X}'\mathbf{X}\hat{\beta}                  \\
-  \hat{\beta}      & = (\mathbf{X}'\mathbf{X})^{-1}\mathbf{X}'\mathbf{Y}                              \\
-                   & = (\sum^{n} \mathbf{x}_i \mathbf{x}'_i)^{-1} \sum^{n} \mathbf{x}_i y_i
-\end{aligned}
-```
+Work within your defined hours. Define a time on your calendar when you will stop working each day. Cal Newport refers to this as a "shutdown ritual". At the end of the day, utilize a strict ritual to mentally disengage from your work. You need to define what will enable you to do this. I personally can relax once I've reviewed my todo list for the day and closed out each item. If an item is incomplete, then I ensure there is a plan in place to complete it or it is captured in a place where I may revisit it later. I then review my calendar for the following day and ensure I've scheduled my time. Based on what was and was not completed, I create a todo list for the following day. These steps should become an algorithm that is easy to follow at the end of each day.
 
-$$
-\begin{aligned}
-  \min Q           & = \min_{\beta} \mathbf{Y}'\mathbf{Y} - 2\beta'\mathbf{X}'\mathbf{Y} +
-  \beta'\mathbf{X}'\mathbf{X}\beta \\
-                   & = \min_{\beta} - 2\beta'\mathbf{X}'\mathbf{Y} + \beta'\mathbf{X}'\mathbf{X}\beta \\
-  \text{[FOC]}~~~0 & =  - 2\mathbf{X}'\mathbf{Y} + 2\mathbf{X}'\mathbf{X}\hat{\beta}                  \\
-  \hat{\beta}      & = (\mathbf{X}'\mathbf{X})^{-1}\mathbf{X}'\mathbf{Y}                              \\
-                   & = (\sum^{n} \mathbf{x}_i \mathbf{x}'_i)^{-1} \sum^{n} \mathbf{x}_i y_i
-\end{aligned}
-$$
+**Batch all shallow work into short bursts**
+
+This one is easy. Don't check email or perform mundane tasks throughout the day. Batch them all into a short burst at a designated time. Shallow work is work that adds no value to your ambitious goals. Worse yet, distractions such as emails and texts distract us for longer than the time we spend on them. In a 2009 paper titled “Why Is It So Hard to Do My Work?”, University of Minnesota business school professor Sophie Leroy describes the concept of "attention residue". In essence, context switching and multitasking is very harmful to the practice of deep concentration because a single text message could stay on our mind for much longer than it took to read the text, taking up valuable headspace that should be instead allocated to the task at hand.
+
+#### 3. Work effectively
+
+This section includes the bulk of learning techniques that are mentioned in the above resources.
+
+**Execute like a business**
+
+Focus only on the wildly important. In other words, clearly identify a small number of goals and pursue them. Learn one thing at a time and learn it deeply. Do not try to learn many things at once.
+
+Act only on your lead measures. This idea comes from a strategy execution framework developed by Stephen R. Covey and Chris McChesney wherein they define two metrics, lag measures, and lead measures. The goal is to focus only on lead measures. Lag measures describe the thing you’re ultimately trying to improve. Lead measures, on the other hand, “...measure the new behaviors that will drive success on the lag measures.” So instead of focusing on writing three new applications (a lag measure), it is better to focus on hours spent writing applications (a lead measure). The lead measure is what leads to achieving the lag measure.
+
+Keep metrics or as Cal Newport puts it, "keep a compelling scoreboard". My scoreboard is the number of pomodoros I complete each day. I'm using Be Focused Timer Pro and I can output a CSV file with my metrics. At the end of each week on Sunday, I review my performance and seek ways to celebrate what went well and improve areas that require improvement.
+
+**Focus on process instead of product**
+
+This is perhaps my favorite piece of advice. There is so much to learn when it comes to software development. I often find myself overwhelmed. Even when working on a single project, when I think of the end product, it's difficult to imagine getting from the start to the finish. In the end, however, at least when it comes to learning, the most important thing is to focus on the process. Follow your routine and rituals each day, as planned. That is really all you can do. The product is the result of the process. Wasting time worrying about the end only takes away time from working towards your goal. Whenever I feel overwhelmed, I just focus on my process, working one pomodoro block at a time. Each 25-minute block of intense concentration brings me closer to my goal. To that end, it's also a good idea to work on the most difficult task first each day.
+
+Read effectively. Do not passively read. First, skim the text, form ideas and questions, then read the text. After each page/section, recall what you've read, then later review it. When reviewing, first try to recall the information from memory before referring to your notes. Test yourself.
+
+Think on paper. Handwrite your notes on actual paper. Draw diagrams. Connect things with lines and arrows. Write code syntax by hand.
+
+Alternate between focused and diffuse thinking. Intensely concentrate on something and then spend five minutes standing, blinking, walking, etc. During focused thinking, our minds are narrowly focused. During diffuse thinking, our minds are capable of connecting broad concepts. We need both forms of thinking equally to form memory chunks. Actively disengage from focused thinking and ensure this time is built into your study. Allow your broad, diffuse thinking mode to connect disparate ideas from your focused thinking mode. The pomodoro technique combined with a timer such as Be Focused is perfect for this. I don't need to think about when to switch modes, the timer lets me know.
+
+Recall and test yourself frequently. Recall is one of the strongest techniques when it comes to memorization and learning. I use spaced repetition learning via the Anki application. After learning something new, it is important to recall the information at a later time and test yourself on it. Spread out your learning this way to allow your brain to rest on a per subject basis.
+
+Alternate problem-solving techniques. Do not spend an entire session practicing a single technique. This approach does not train the brain when to use the technique, only how to use it. When encountering problems in real life, we need to know both which technique to use and how to use it. Instead, switch between different techniques and different types of problems when practicing.
+
+Use explanatory questioning and simple analogies. Developing an analogy for what you've just learned, and then drawing it out in your notes, is extremely helpful in forming a smooth chunk of information. It's similar to constructing a frame on which you may hang more detailed information. To understand the details, you must first construct the frame. Explain to yourself the concept in a way that a 10-year-old could understand. Speak it out loud to yourself.
+
+#### 4. Cultivate a positive mindset
+
+Much of what I garnered from the articles by Ta-Nehisi Coates and Sara Simon is that not everyone has the same approach to learning and that is okay. Some people will learn faster than you and that's okay. It doesn't mean you're incapable. In fact, Barbara Oakley mentions in A Mind For Numbers how she was a subpar student in STEM topics largely due to her mindset. She is now a Professor of Engineering at Oakland University and McMaster University.
+
+Managing the emotions around one's own abilities and learning trajectory is just as important as the learning process itself. There is a lot of mental work that goes into learning confidently and with enjoyment. A sure way to feel down about yourself is to compare yourself to someone else that you feel is smarter than you or faster than you. It is most likely that they just have more experience than you, they've been at it longer. Or perhaps they truly are more gifted in a specific area and that's okay. You cannot let that distract you from your own learning because, at the end of the day, all that matters is the work you've put into your own learning.
+
+Merely understanding a concept is not enough, practice and discipline are required to achieve fluency. In other words, hard work beats talent. Process over product. That's all that matters. In the end, it shouldn't bother you if it takes you a little longer to pick up a topic that someone else grasped quickly. For one, the roles could quickly be reversed if given a different topic. Secondly, if it takes you longer, that is an opportunity to really attack the topic and learn it at a deeper level. Practice it. Chunk it. Build a mental model. Draw diagrams. It will stick in your brain soon enough.
+
+The other great aspect of process over product is that it is indefinite. Goals are achieved, products are built, but the process is endless. If we rely upon goals to create lasting happiness at work, we will paradoxically become unhappy once achieving them. If we however enjoy our processes, we can sustain happiness and contentment indefinitely.
+
+In sum, understand that struggles with procrastination and willpower are common. Concentration is a skill that must be developed. You must train your ability to resist distraction and train your ability to concentrate intensely.
+
+## My process
+
+The following is the strategy I utilize to take agency over my own learning:
+
+- Create a deep workspace.
+- Plan every minute of the day on Google calendar including workouts, groceries, and leisure time.
+- Build into the daily schedule two to three 2.5 hour deep work blocks.
+- After the last deep work block is complete, initiate a shutdown ritual.
+- Each Sunday, hold a weekly review of yourself.
+
+And these are the tactics that I use each day:
+
+- Use Be Focused Timer Pro for each pomodoro to stay on track and keep metrics.
+- SQ3R reading approach (see A Mind For Numbers).
+- Handwrite and diagram notes on each topic.
+- Generate Anki flashcards from topics studied and review them daily during any open time (e.g. waiting in line, at the gym, walking somewhere, etc.).
+
+If you'd like to discuss any of the above materials and/or software, I'm very interested in the topic of meta-learning and would enjoy hearing from you. These tools and routines have made me a much better learner and worker.
