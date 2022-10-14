@@ -1,0 +1,52 @@
+---
+title: Learning VIM
+date: '2022-10-14'
+tags: ['vim', 'editor']
+draft: false
+summary: Learning VIM commands
+images: []
+layout: PostLayout
+canonicalUrl: vim
+---
+
+:q! - Quit without saving
+:q - Quit
+
+## Horizontal movement
+
+h - move left
+j - move down
+k - move up
+l - move right
+
+w - move to the beginning of the next word
+e - move to the end of the next word
+b - move to the beginning of the previous word
+
+yy - copy the current line
+p - paste the copied line below
+dd - cut the current line (can paste with p)
+u - undo last command
+
+shift + v - select multiple lines (use j and k to move up and down) - visual line mode
+
+v - select multiple characters (use h, j, k, l to move around) - visual mode
+
+i - insert mode
+escape - exit insert mode
+ctrl + c - exit insert mode
+ctrl + [ - exit insert mode
+
+normal mode - movement
+insert mode - editing
+visual mode - selecting
+visual line mode - selecting multiple lines
+
+In visual mode, I can move around and I can use delete or yank
+
+dj - delete the current line and the next line
+dw - delete the current word
+
+:w - save (write buffer to file)
+
+## Vertical movement
