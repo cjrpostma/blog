@@ -9,8 +9,21 @@ layout: PostLayout
 canonicalUrl: vim
 ---
 
-:q! - Quit without saving
-:q - Quit
+In visual mode, I can move around and I can use delete or yank
+
+Vim has its own terminology for copying, cutting, and pasting. Copy is called yank (y), cut is called delete (d), and paste is called put (p).
+
+| Command | Description         |
+| ------- | ------------------- |
+| :q!     | Quit without saving |
+| :q      | Quit                |
+| h       | move left           |
+| j       | move down           |
+| k       | move up             |
+| l       | move right          |
+
+| i | insert mode at start of character|
+| a | insert mode at end of character|
 
 ## Horizontal movement
 
@@ -42,8 +55,6 @@ insert mode - editing
 visual mode - selecting
 visual line mode - selecting multiple lines
 
-In visual mode, I can move around and I can use delete or yank
-
 dj - delete the current line and the next line
 dw - delete the current word
 
@@ -52,6 +63,7 @@ dw - delete the current word
 ## Vertical movement
 
 o - open a new line below the current line
+
 O - open a new line above the current line
 
 Shift + p - paste the copied line above
