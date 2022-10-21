@@ -9,33 +9,71 @@ layout: PostLayout
 canonicalUrl: vim
 ---
 
-:q! - Quit without saving
-:q - Quit
+I'm watching a YouTube series about VIM by ThePrimeagen.
 
-## Horizontal movement
+# Vim Learning Path
 
-h - move left
-j - move down
-k - move up
-l - move right
+## First Chunk (1 Week Practice Min.)
 
-w - move to the beginning of the next word
-e - move to the end of the next word
-b - move to the beginning of the previous word
+| Command       | Description                                                    |
+| ------------- | -------------------------------------------------------------- |
+| `h/j/k/l`     | left/down/up/right directions                                  |
+| `w/b`         | forward/backward by word                                       |
+| `e`           | move to the end of the next word                               |
+| `i`           | insert mode                                                    |
+| `esc`         | exit insert/visual mode                                        |
+| `ctrl + c`    | exit insert mode                                               |
+| `ctrl + [`    | exit insert mode                                               |
+| `yy`          | yanks a line                                                   |
+| `p`           | paste line one line below                                      |
+| `dd`          | delete line current line                                       |
+| `u`           | undo last command                                              |
+| `x`           | delete under cursor, single char                               |
+| `shift-v (V)` | highlights a line                                              |
+| `j or k`      | to select lines up or down                                     |
+| `y`           | yank and save to register                                      |
+| `d`           | deletes and saves to register                                  |
+| `p/P`         | to paste register below/above cursor                           |
+| `v`           | highlights current letter (use movement to continue selecting) |
+| `gg/G`        | go to top of document/bottom of document                       |
+| `:w`          | save your file (if in vim proper)                              |
+| `:q`          | quit after saving                                              |
+| `:q!`         | quit without saving                                            |
 
-yy - copy the current line
-p - paste the copied line below
-dd - cut the current line (can paste with p)
-u - undo last command
+## Second Chunk
 
-shift + v - select multiple lines (use j and k to move up and down) - visual line mode
+| Command       | Description                                                          |
+| ------------- | -------------------------------------------------------------------- |
+| `o/O`         | insert new line and enter insert mode below/above                    |
+| `shift-p (P)` | paste _above_                                                        |
+| `i/a`         | insert mode left of cursor, right of cursor                          |
+| `I/A`         | insert mode beginning/end of current line                            |
+| `$/0`         | go to end/beginning of current line, movement only                   |
+| `/`           | search for ie: `/word`                                               |
+| `*`           | next occurrence of whatever is under your cursor                     |
+| `n/N`         | go to next/previous occurrence once set with `*` or `/<search term>` |
 
-v - select multiple characters (use h, j, k, l to move around) - visual mode
+## Third Chunk (Horizontal Speed)
 
-i - insert mode
-escape - exit insert mode
-ctrl + c - exit insert mode
-ctrl + [ - exit insert mode
+| Command       | Description                                                     |
+| ------------- | --------------------------------------------------------------- |
+| `fx/Fx`       | search forward/backward for x, land **on** result               |
+| `tx/Tx`       | search forward/backward for x, land **one space before** result |
+| `:/,`         | move forward/backward through search result from f/t            |
+| `x`           | delete single character                                         |
+| `s`           | delete single character + enter insert mode                     |
+| `c`           | just like delete (`d`) but goes into insert mode as well        |
+| `shift-d (D)` | delete full line                                                |
+| `shift-c (C)` | delete full line and insert mode                                |
+
+Some examples:
+
+| Command | Description                                              |
+| ------- | -------------------------------------------------------- |
+| `dt)`   | delete everything up until `)` but not `)` itself        |
+| `df)`   | delete everything up to and _including_ the `)`          |
+| `dT(`   | delete everything _back to_, but _not including_ the `(` |
+| `dF(`   | delete everything back to and including the `(`          |
 
 normal mode - movement
 insert mode - editing
@@ -50,9 +88,6 @@ dw - delete the current word
 :w - save (write buffer to file)
 
 ## Vertical movement
-
-o - open a new line below the current line
-O - open a new line above the current line
 
 Shift + p - paste the copied line above
 
