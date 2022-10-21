@@ -9,20 +9,21 @@ layout: PostLayout
 canonicalUrl: linux-commands
 ---
 
-Go to previous directory: cd -
-Chain commands: && (cmd1 && cmd2 && cmd3, etc.)
+| Command                     | Description                                           |
+| --------------------------- | ----------------------------------------------------- |
+| `ls`                        | List files in current directory                       |
+| `cat`                       | Concatenate files and print on the standard output    |
+| `split -l 1000 file.txt`    | Split file.txt into multiple files of 1000 lines each |
+| `grep`                      | Search for a pattern in a file                        |
+| `head -n 10`                | Print the first 10 lines of a file                    |
+| `tail -n 10`                | Print the last 10 lines of a file                     |
+| `wc -l`                     | Count the number of lines in a file                   |
+| `word count`                | Count the number of words in a file                   |
+| `cd -`                      | Go to previous directory                              |
+| `ctr + R <command>`         | Search for past uses of command; `enter` move to next |
+| `history \| grep <command>` | Search for past uses of command; can pipe into tail   |
 
-Search for past uses of command: ctrl + R [...type a command to search for] (press again for 2nd, 3rd, nth result)
-
--     	cat
--     	split -l
--     	grep
--     	head -n
--     	tail -n
--     	wc -l
-  - word count
-  - -l number of lines
-  - example: wc-l myFile.txt
+- example: wc-l myFile.txt
 -     	sed
 -     	awk
 -     	pbcopy < file.txt
