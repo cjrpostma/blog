@@ -11,6 +11,11 @@ canonicalUrl: vim
 
 I'm watching a YouTube series about VIM by ThePrimeagen.
 
+normal mode - movement
+insert mode - editing
+visual mode - selecting
+visual line mode - selecting multiple lines
+
 # Vim Learning Path
 
 ## First Chunk (1 Week Practice Min.)
@@ -23,7 +28,7 @@ I'm watching a YouTube series about VIM by ThePrimeagen.
 | `i`           | insert mode                                                    |
 | `esc`         | exit insert/visual mode                                        |
 | `ctrl + c`    | exit insert mode                                               |
-| `ctrl + [`    | exit insert mode                                               |
+| `crl + [`     | exit insert mode                                               |
 | `yy`          | yanks a line                                                   |
 | `p`           | paste line one line below                                      |
 | `dd`          | delete line current line                                       |
@@ -35,7 +40,6 @@ I'm watching a YouTube series about VIM by ThePrimeagen.
 | `d`           | deletes and saves to register                                  |
 | `p/P`         | to paste register below/above cursor                           |
 | `v`           | highlights current letter (use movement to continue selecting) |
-| `gg/G`        | go to top of document/bottom of document                       |
 | `:w`          | save your file (if in vim proper)                              |
 | `:q`          | quit after saving                                              |
 | `:q!`         | quit without saving                                            |
@@ -59,52 +63,45 @@ I'm watching a YouTube series about VIM by ThePrimeagen.
 | ------------- | --------------------------------------------------------------- |
 | `fx/Fx`       | search forward/backward for x, land **on** result               |
 | `tx/Tx`       | search forward/backward for x, land **one space before** result |
+| `;`           | after search, use to move forward to next instance              |
+| `,`           | after search, use to move backward to previous instance         |
 | `:/,`         | move forward/backward through search result from f/t            |
 | `x`           | delete single character                                         |
 | `s`           | delete single character + enter insert mode                     |
 | `c`           | just like delete (`d`) but goes into insert mode as well        |
-| `shift-d (D)` | delete full line                                                |
-| `shift-c (C)` | delete full line and insert mode                                |
+| `shift-d (D)` | delete full line from current position                          |
+| `shift-c (C)` | delete full line and enter insert mode from current position    |
+| `shift-s (S)` | delete full line and enter insert mode                          |
 
 Some examples:
 
-| Command | Description                                              |
-| ------- | -------------------------------------------------------- |
-| `dt)`   | delete everything up until `)` but not `)` itself        |
-| `df)`   | delete everything up to and _including_ the `)`          |
-| `dT(`   | delete everything _back to_, but _not including_ the `(` |
-| `dF(`   | delete everything back to and including the `(`          |
+| Command | Description                                                           |
+| ------- | --------------------------------------------------------------------- |
+| `dt)`   | delete everything up until `)` but not `)` itself                     |
+| `df)`   | delete everything up to and _including_ the `)`                       |
+| `dT(`   | delete everything _back to_, but _not including_ the `(`              |
+| `dF(`   | delete everything back to and including the `(`                       |
+| `vf)`   | select everything up to `)`                                           |
+| `ct)`   | delete everything up until `)` and enter insert mode                  |
+| `cf)`   | delete everything up to and _including_ the `)` and enter insert mode |
 
-normal mode - movement
-insert mode - editing
-visual mode - selecting
-visual line mode - selecting multiple lines
+## Fourth Chunk (Vertical Speed)
 
-dj - delete the current line and the next line
-dw - delete the current word
+| Command    | Description                                           |
+| ---------- | ----------------------------------------------------- |
+| `gg/G`     | go to top of document/bottom of document              |
+| `:100`     | go to line number                                     |
+| `100G`     | go to line 100                                        |
+| `{` or `}` | jump up/down to next empty line                       |
+| `%`        | if on a bracket/brace, move to matching bracket/brace |
 
-:w - save (write buffer to file)
+Some examples:
 
-## Vertical movement
-
-o - open a new line below the current line
-
-O - open a new line above the current line
-
-Shift + p - paste the copied line above
-
-a - append text after the cursor
-
-shift + i - insert text before the cursor
-
-shift + a - append text after the cursor
-
-/ - search for a word (command mode)
-
-n - go to the next search result
-
-shift + n - go to the previous search result
-
-\* - search for the word under the cursor
-
-\# - search for the word under the cursor in the opposite direction
+| Command            | Description               |
+| ------------------ | ------------------------- |
+| `4j`               | jump down four lines      |
+| `12k`              | jump backward by 12 line  |
+| `4w`               | jump forward four words   |
+| `6b`               | jump backwards four words |
+| `100G`             | go to line 100            |
+| `ctrl+d`, `ctrl+u` | page down, page up        |
