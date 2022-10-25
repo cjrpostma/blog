@@ -1,6 +1,6 @@
 ---
 title: Learning VIM
-date: '2022-10-14'
+daje: '2022-10-14'
 tags: ['vim', 'editor']
 draft: false
 summary: Learning VIM commands
@@ -9,12 +9,40 @@ layout: PostLayout
 canonicalUrl: vim
 ---
 
-I'm watching a YouTube series about VIM by ThePrimeagen.
+I'm finally fully committing to learning VIM. It's been a learning goal for the past year that
+I keep avoiding as other topics have taken priority. Recently, however, a close friend started
+teaching himself VIM and the excitement caught on. I could no longer resist.
 
-normal mode - movement
-insert mode - editing
-visual mode - selecting
-visual line mode - selecting multiple lines
+I think it's also beneficial to learn as soon as possible because once you commit the basics
+to memory, you can continue train it passively as you work. It's a skill that grows with you
+everyday while you work. Therefore, I plan to get myself to the same speed as my previous
+configuration with VIM as soon as possible so that I can begin training it passively while I
+take on new topics.
+
+VIM stands for Vi IMproved, a vi-derivative text editor based on the original Vi editor that was released in 1976.
+VIM was written by Bram Moolenaar and released in 1991. VIM comes with Linux, BSD, and macOS. It's a small and fast
+program that can be run in a terminal.
+
+Some of the main benefits of VIM are as follows:
+
+1. It is omnipresent -- available on most machines and bindings exist for most editors
+2. It has a low memory footprint and is fast
+3. Highly configurable via simple text files
+4. It uses commands that can be composed together to accomplish complex text-based tasks
+
+VIM is also a modal editor as opposed to a modeless editor. Modal editors offer multiple types of interaction modes
+which are each optimized for specific tasks. The original intent of modal editors was to allow users to perform
+complex operations without the use of a mouse, which may not have been available at the time. This is still a primary
+benefit today, the ability to quickly move through and edit files without a mouse.
+
+A few of the modes available are as follows:
+
+Normal mode - movement (default)
+Insert mode - editing
+Visual mode - selecting
+Visual line mode - selecting multiple lines
+Command mode - do things like write buffer, quit, etc.
+Replace mode - replace text at position
 
 # Vim Learning Path
 
@@ -26,6 +54,9 @@ visual line mode - selecting multiple lines
 | `w/b`         | forward/backward by word                                       |
 | `e`           | move to the end of the next word                               |
 | `i`           | insert mode                                                    |
+| `a`           | insert mode after cursor                                       |
+| `A`           | insert mode at end of line                                     |
+| `gi`          | insert mode at same position where insert mode was last used   |
 | `esc`         | exit insert/visual mode                                        |
 | `ctrl + c`    | exit insert mode                                               |
 | `crl + [`     | exit insert mode                                               |
@@ -43,6 +74,7 @@ visual line mode - selecting multiple lines
 | `:w`          | save your file (if in vim proper)                              |
 | `:q`          | quit after saving                                              |
 | `:q!`         | quit without saving                                            |
+| `.`           | repeat last command                                            |
 
 ## Second Chunk
 
@@ -88,19 +120,21 @@ Some examples:
 
 ## Fourth Chunk (Vertical Speed)
 
-| Command    | Description                                                   |
-| ---------- | ------------------------------------------------------------- |
-| `gg/G`     | go to top of document/bottom of document                      |
-| `:100`     | go to line number                                             |
-| `100G`     | go to line 100                                                |
-| `{` or `}` | jump up/down to next empty line (paragraph)                   |
-| `%`        | if on a bracket/brace, move to matching bracket/brace         |
-| `di}`      | delete inside `}`, such as if inside an `if` statement        |
-| `ci}`      | delete inside `}` and enter insert mode                       |
-| `yi}`      | copy inside `}`                                               |
-| `cip`      | cut entire paragraph                                          |
-| `vi[`      | copy everything inside square brackets                        |
-| `va[`      | copy everything inside square brackets and including brackets |
+| Command       | Description                                                     |
+| ------------- | --------------------------------------------------------------- |
+| `gg/G`        | go to top of document/bottom of document                        |
+| `:100`        | go to line number                                               |
+| `100G`        | go to line 100                                                  |
+| `{` or `}`    | jump up/down to next empty line (paragraph)                     |
+| `%`           | if on a bracket/brace, move to matching bracket/brace           |
+| `di}`         | delete inside `}`, such as if inside an `if` statement          |
+| `ci}`         | delete inside `}` and enter insert mode                         |
+| `yi}`         | copy inside `}`                                                 |
+| `cip`         | cut entire paragraph                                            |
+| `vi[`         | copy everything inside square brackets                          |
+| `va[`         | copy everything inside square brackets and including brackets   |
+| `da{`         | delete everything inside curly brackets including the brackets  |
+| `shift+i (I)` | enter insert mode before first non-blank character in same line |
 
 Some examples:
 
