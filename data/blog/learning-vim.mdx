@@ -150,3 +150,35 @@ Some examples:
 | `cip`              | delete paragraph and enter insert mode                    |
 | `yi)`              | copy inside parenthesis                                   |
 | `d2i{`             | delete most immediate plus surrounding content inside `{` |
+
+## Other commands
+
+| Command    | Description                                                              |
+| ---------- | ------------------------------------------------------------------------ |
+| `gq`       | on a visual selection, reflow and wordwrap blocks of text                |
+| `gb`       | add another cursor on the next word found that matches word under cursor |
+| `gh`       | preview type definition (similar to hovering over a word)                |
+| `gd`       | jump to local definition                                                 |
+| `gD`       | jump to global definition                                                |
+| `ctrl+e`   | move screen down one line without moving cursor                          |
+| `ctrl+y`   | move screen up one line without moving cursor                            |
+| `:100`     | go to line number                                                        |
+| `>>`, `<<` | indent line                                                              |
+
+## Marking text (visual mode)
+
+| Command | Description                                                    |
+| ------- | -------------------------------------------------------------- |
+| v       | start visual mode, mark lines, then do a command (like y-yank) |
+| V       | start linewise visual mode                                     |
+| o       | move to other end of marked area                               |
+| ctrl+v  | start visual block mode                                        |
+| O       | move to other corner of block                                  |
+| aw      | mark a word                                                    |
+| ab      | a block with ()                                                |
+| aB      | a block with {}                                                |
+| at      | a block with <> tags                                           |
+| ib      | inner block with ()                                            |
+| iB      | inner block with {}                                            |
+| it      | inner block with <> tags                                       |
+| Esc     | exit visual model                                              |
