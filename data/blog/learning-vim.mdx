@@ -78,6 +78,7 @@ Some examples:
 | Command | Description                                                           |
 | ------- | --------------------------------------------------------------------- |
 | `dt)`   | delete everything up until `)` but not `)` itself                     |
+| `yt)`   | delete everything up until `)` but not `)` itself                     |
 | `df)`   | delete everything up to and _including_ the `)`                       |
 | `dT(`   | delete everything _back to_, but _not including_ the `(`              |
 | `dF(`   | delete everything back to and including the `(`                       |
@@ -87,21 +88,31 @@ Some examples:
 
 ## Fourth Chunk (Vertical Speed)
 
-| Command    | Description                                           |
-| ---------- | ----------------------------------------------------- |
-| `gg/G`     | go to top of document/bottom of document              |
-| `:100`     | go to line number                                     |
-| `100G`     | go to line 100                                        |
-| `{` or `}` | jump up/down to next empty line                       |
-| `%`        | if on a bracket/brace, move to matching bracket/brace |
+| Command    | Description                                                   |
+| ---------- | ------------------------------------------------------------- |
+| `gg/G`     | go to top of document/bottom of document                      |
+| `:100`     | go to line number                                             |
+| `100G`     | go to line 100                                                |
+| `{` or `}` | jump up/down to next empty line (paragraph)                   |
+| `%`        | if on a bracket/brace, move to matching bracket/brace         |
+| `di}`      | delete inside `}`, such as if inside an `if` statement        |
+| `ci}`      | delete inside `}` and enter insert mode                       |
+| `yi}`      | copy inside `}`                                               |
+| `cip`      | cut entire paragraph                                          |
+| `vi[`      | copy everything inside square brackets                        |
+| `va[`      | copy everything inside square brackets and including brackets |
 
 Some examples:
 
-| Command            | Description               |
-| ------------------ | ------------------------- |
-| `4j`               | jump down four lines      |
-| `12k`              | jump backward by 12 line  |
-| `4w`               | jump forward four words   |
-| `6b`               | jump backwards four words |
-| `100G`             | go to line 100            |
-| `ctrl+d`, `ctrl+u` | page down, page up        |
+| Command            | Description                                               |
+| ------------------ | --------------------------------------------------------- |
+| `4j`               | jump down four lines                                      |
+| `12k`              | jump backward by 12 line                                  |
+| `4w`               | jump forward four words                                   |
+| `6b`               | jump backwards four words                                 |
+| `100G`             | go to line 100                                            |
+| `ctrl+d`, `ctrl+u` | page down, page up                                        |
+| `diw`              | delete word, cursor can be anywhere in word               |
+| `cip`              | delete paragraph and enter insert mode                    |
+| `yi)`              | copy inside parenthesis                                   |
+| `d2i{`             | delete most immediate plus surrounding content inside `{` |
