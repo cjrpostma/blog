@@ -4,7 +4,6 @@ avatar: /static/images/avatar.png
 occupation: Software Engineer
 company: Gambyt
 email: cjrpostma@gmail.com
-twitter: https://twitter.com/cjrpostma
 linkedin: https://www.linkedin.com/in/cjrpostma
 github: https://github.com/cjrpostma
 ---
