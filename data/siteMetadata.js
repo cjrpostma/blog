@@ -9,7 +9,7 @@ const siteMetadata = {
   siteRepo: 'https://github.com/cjrpostma/blog',
   siteLogo: '/static/images/logo.png',
   image: '/static/images/avatar.jpg',
-  // socialBanner: '/static/images/twitter-card.png',
+  socialBanner: '/static/images/twitter-card.png',
   email: 'cjrpostma@gmail.com',
   github: 'https://github.com/cjrpostma',
   linkedin: 'https://www.linkedin.com/in/cjrpostma/',
