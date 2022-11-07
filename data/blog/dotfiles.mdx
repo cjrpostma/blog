@@ -1,14 +1,12 @@
 ---
-title: dotfile organization
+title: Dotfile organization
 date: '2022-11-05'
 tags: ['vim']
-draft: false
+draft: true
 summary: Organizing dotfiles
-images: []
-layout: PostLayout
-canonicalUrl: dotfiles
 ---
 
+```
 I am taking the course "Dotfiles from start to finish" by Patrick McDonald on Udemy.
 
 I decided to take this course as I begin to customize my VIM configuration.
@@ -85,9 +83,11 @@ FUNCTIONS
 
 when making a dir, if i mkdir i then need to cd into it, i can do this in a single step by creating a function
 
+`
 function mkcd() {
 mkdir -p "$@" && cd "$\_";
 }
+`
 
 - the -p flag allows making nested directories
 - "$@" take args passed to my function and pass them to the mkdir command
@@ -100,13 +100,13 @@ GIT
 
 abbreviated flags -v, versus full --version
 
-man command === manual
+`man command === manual`
 
 SYMLINKS
 
 Want to move my dotfiles into my repo
 
-ls ~ | grep zsh
+`ls ~ | grep zsh`
 
 limits result to just results wiht zsh in name
 
@@ -123,3 +123,4 @@ ln -s source target (e.g real faux)
 ln -s ~/.dotfiles/zshrc ~/.zshrc
 
 dotbot bootstraps my dotfiles
+```
