@@ -12,3 +12,114 @@ canonicalUrl: dotfiles
 I am taking the course "Dotfiles from start to finish" by Patrick McDonald on Udemy.
 
 I decided to take this course as I begin to customize my VIM configuration.
+
+What is a dotfile?
+
+- typically begins with a .
+- the . tells terminal and finder to not show these files
+
+echo $0 returns the current running process
+echo $SHELL returns path to default shell of the system
+
+to change default shell via GUI, go to Users and Groups, unlock to make changes, right click on user name, then click advanced options, then can change login shell
+
+to change the default shell via command use
+
+chsh -s /opt/homebrew/bin/zsh
+
+.zsh_history is file zsh writes to when we exit a shell
+
+I can run zsh inside a zsh shell to open a subshell
+I can use the exit command to exit the shell
+
+which <command>
+
+- tells us the location of the program
+
+in ls -la
+
+. gives info about curr dir
+.. gives prev dir
+
+ls -lAF the F flag makes it easier to see directories because they will end in a slash
+
+ls -lAFh the h flag displays the size in kb instead of b making it more readable
+
+if I overwrite a command name with an alias and then call which, which will show me the alias
+
+to add an alias
+alias ls ='ls -lAFh'
+
+its prob not a good practice to overwrite existing commands wiht aliases
+
+to then bypass an alias, we can call the command directly with
+
+command ls
+
+in the prompt
+
+username@host location is the format
+
+can see this by typing
+
+echo $USERNAME
+echo $HOST
+
+echo $PROMPT
+will print the format that my prompt is using
+
+I can set PROMPT='
+
+%1~ %L %#
+
+'
+
+in my shell's run commands file to edit the way in which the prompt is displayed in my shell and see the changes after sourcing my run command file. THis is how p10k modifies how my promp looks
+
+when setting prompt, I can reference %L, which represents shell level, can see this by entering echo $SHLVL
+
+I can add RPROMPT='%\*'
+to have the right side of my prompt show the time in 24 hour format
+
+FUNCTIONS
+
+when making a dir, if i mkdir i then need to cd into it, i can do this in a single step by creating a function
+
+function mkcd() {
+mkdir -p "$@" && cd "$\_";
+}
+
+- the -p flag allows making nested directories
+- "$@" take args passed to my function and pass them to the mkdir command
+- "$\_" take last arg and CD into that location
+- I can type `which <fn name> and the shell will print out my fn
+
+mkcd .dotfiles
+
+GIT
+
+abbreviated flags -v, versus full --version
+
+man command === manual
+
+SYMLINKS
+
+Want to move my dotfiles into my repo
+
+ls ~ | grep zsh
+
+limits result to just results wiht zsh in name
+
+.zshrc must be in home dir but tracked in dotfile dir
+
+can use symlink to satisfy both constraints
+
+symlink points to original copy
+
+mv ~/.zhsrc zshrc (we dont have to hide file from self in own repo)
+
+ln -s source target (e.g real faux)
+
+ln -s ~/.dotfiles/zshrc ~/.zshrc
+
+dotbot bootstraps my dotfiles
