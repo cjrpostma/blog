@@ -1,0 +1,55 @@
+---
+title: Learning and configuring tmux
+date: '2022-11-007'
+tags: ['editor', 'tmux']
+draft: false
+summary: Somes note from setting up tmux and learning how to use it.
+---
+
+dotfiles
+mention plugins that allow vi movements
+
+## Keyboard bindings
+
+| Command                        | Description                                                              |
+| ------------------------------ | ------------------------------------------------------------------------ |
+| `ctrl+b` also written as `C-b` | prefix or leader command                                                 |
+| `tmux new -s <session_name> `  | create new session with name                                             |
+| `tmux detach`                  | exit session                                                             |
+| `tmux ls`                      | list all sessions                                                        |
+| `tmux attach -t <session_name` | attach to session with name                                              |
+| `C-b r`                        | custom binding to source tmux.conf                                       |
+| `C-b I`                        | install plugins                                                          |
+| `C-b s`                        | view all sessions (interactive), use `j` and `k` to move between options |
+| `C-b \| `                      | split window vertically                                                  |
+| `C-b -`                        | split window horizontally                                                |
+| `C-b h`                        | resize pane left                                                         |
+| `C-b j`                        | resize pane down                                                         |
+| `C-b k`                        | resize pane up                                                           |
+| `C-b l`                        | resize pane right                                                        |
+| `C-b m`                        | maximize pane                                                            |
+| `C-b n`                        | return pane to original size                                             |
+| `C-h`                          | move left one pane                                                       |
+| `C-j`                          | move down one pane                                                       |
+| `C-k`                          | move up one pane                                                         |
+| `C-l`                          | move right one pane                                                      |
+| `C-b c`                        | create new tmux window                                                   |
+| `C-b <window_number>`          | navigate to window by window number                                      |
+| `C-b ,`                        | rename a window                                                          |
+| `C-b n`                        | next window                                                              |
+| `C-b p`                        | previous window                                                          |
+| `C-b w`                        | view all windows                                                         |
+
+## Vi mode in tmux (via plugin)
+
+| Command      | Description             |
+| ------------ | ----------------------- |
+| `C-b [`      | enter copy mode in tmux |
+| `h,j,k,l`    | movement (copy mode)    |
+| `v <motion>` | copy text from terminal |
+| `J`          | scroll down             |
+| `K`          | scroll up               |
+| `C-u`        | scroll up half page     |
+| `C-d`        | scroll down half page   |
+| `C-f`        | scroll up full page     |
+| `C-b`        | scroll down full page   |
