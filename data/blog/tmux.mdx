@@ -6,8 +6,18 @@ draft: false
 summary: Somes note from setting up tmux and learning how to use it.
 ---
 
-dotfiles
-mention plugins that allow vi movements
+I'm working to transition to VIM for my daily development work and tmux is a natural partner for a terminal based editor.
+
+I recently followed a [video](https://youtu.be/U-omALWIBos) by Josean Martinez where he describes his tmux setup from
+dotfiles all the way to keyboard shortcuts and have decided to use this as my starting point.
+You can view my dotfiles on GitHub [here](https://github.com/cjrpostma/dotfiles_macos).
+
+If attempting to use the below bindings, be sure to follow the linked tutorial above, as some bindings require plugins
+and others require bindings specified in `tmux.conf`.
+
+- Why use versus integrated iTerm2 version?
+  dotfiles
+  mention plugins that allow vi movements
 
 ## Keyboard bindings
 
@@ -21,7 +31,7 @@ mention plugins that allow vi movements
 | `C-b r`                        | custom binding to source tmux.conf                                       |
 | `C-b I`                        | install plugins                                                          |
 | `C-b s`                        | view all sessions (interactive), use `j` and `k` to move between options |
-| `C-b \| `                      | split window vertically                                                  |
+| `C-b \|`                       | split window vertically                                                  |
 | `C-b -`                        | split window horizontally                                                |
 | `C-b h`                        | resize pane left                                                         |
 | `C-b j`                        | resize pane down                                                         |
@@ -39,6 +49,8 @@ mention plugins that allow vi movements
 | `C-b n`                        | next window                                                              |
 | `C-b p`                        | previous window                                                          |
 | `C-b w`                        | view all windows                                                         |
+| `C-d`                          | close current pane                                                       |
+| `C-b &`                        | close current window                                                     |
 
 ## Vi mode in tmux (via plugin)
 
