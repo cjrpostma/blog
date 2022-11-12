@@ -8,8 +8,7 @@ linkedin: https://www.linkedin.com/in/cjrpostma
 github: https://github.com/cjrpostma
 ---
 
-Chris Postma is a software engineer backed by ten years of experience in data management and research administration in the fields of biostatistics and healthcare.
-
-He is known for transforming requirements into working, maintainable code through collaboration and ownership of his work and for showing up as an engaged and compassionate colleague.
-
-Through his practice of pragmatism, simplicity, and mentorship, he strengthens the teams and code repositories to which he contributes.
+This blog is my space to practice learning in public (see this great post on
+[learning in public](https://www.swyx.io/learn-in-public/) by swyx). My goal is to translate daily learnings into this
+blog as a learning diary. In doing so, I seek to reinforce my own understanding of topics and develop an easy language
+to share my learnings with colleagues.
