@@ -170,20 +170,20 @@ Some examples:
 
 ## Marking text (visual mode)
 
-| Command  | Description                                                    |
-| -------- | -------------------------------------------------------------- |
-| `v`      | start visual mode, mark lines, then do a command (like y-yank) |
-| `V`      | start linewise visual mode                                     |
-| `ctrl+v` | start visual block mode                                        |
-| `O`      | move to other corner of block                                  |
-| `aw`     | mark a word                                                    |
-| `ab`     | a block with `()`                                              |
-| `aB`     | a block with `{}`                                              |
-| `at`     | a block with `<>` tags                                         |
-| `ib`     | inner block with `()`                                          |
-| `iB`     | inner block with `{}`                                          |
-| `it`     | inner block with `<>` tags                                     |
-| `Esc`    | exit visual model                                              |
+| Command    | Description                                                    |
+| ---------- | -------------------------------------------------------------- |
+| `v`        | start visual mode, mark lines, then do a command (like y-yank) |
+| `V`        | start linewise visual mode                                     |
+| `ctrl+v`   | start visual block mode                                        |
+| `O` or `o` | move to other corner of block                                  |
+| `aw`       | mark a word                                                    |
+| `ab`       | a block with `()`                                              |
+| `aB`       | a block with `{}`                                              |
+| `at`       | a block with `<>` tags                                         |
+| `ib`       | inner block with `()`                                          |
+| `iB`       | inner block with `{}`                                          |
+| `it`       | inner block with `<>` tags                                     |
+| `Esc`      | exit visual model                                              |
 
 ## Helpful commands learned during week 3
 
@@ -199,3 +199,48 @@ Some examples:
 | `gUib`        | change casing within brackets to uppercase                 |
 | `:%s/foo/bar` | replace all instances of foo with bar in file              |
 | `[{`          | jump to above curly bracket (e.g. if inside function body) |
+
+## Helpful commands/ideas learned during week 4
+
+| Command   | Description                                       |
+| --------- | ------------------------------------------------- |
+| `ctrl+f`  | move forward in the document                      |
+| `ctrl+b`  | move backward in the document                     |
+| `shift+h` | place cursor at top of screen                     |
+| `shift+m` | place cursor at middle of screen                  |
+| `shift+l` | place cursor at bottom of screen                  |
+| `z enter` | move screen down and keep cursor at some position |
+| `10gg`    | same as `:10`                                     |
+| `_`       | move to first non-empty character in line         |
+| `ctrl+i`  | move cursor to previous position, newer           |
+| `ctrl+o`  | move cursor to previous position, older           |
+
+This week I started to take the Udemy course called
+[Vim Masterclass](https://www.udemy.com/course/vim-commands-cheat-sheet/) by Jason Cannon.
+Much of the course is reiterating what I've already learned so far but in much more detail
+and with the ideas behind each command explained better than they were on YouTube.
+
+One idea Jason shares is the correct words to refer to each optional and required part of
+VIM commands, such as [count]operation[count]{motion}. This is helpful in learning how to think
+in VIM.
+
+The example he uses to teach this idea is delete a word:
+
+`dw` delete word is an operation{motion}
+`dh` delete one character to the left is the same as `X`
+`dl` deleted one character to the right is the same as `x`
+`dk` delete current line and one above it
+`d0` delete from cursor to start of line
+`d$` delete from cursor to end of line
+`D` the same as above but an alterante
+`3dd` delete line three times
+`d3w` delete 3 words
+`2d3w` delete three words two times
+
+linewise command - a command that operates on an entire line
+characterwise command - a command that operates on a character
+
+`!` forces a command in vim
+`!` can be used to execute external commands
+`:help` opens vim help
+`:help <COMMAND>`
