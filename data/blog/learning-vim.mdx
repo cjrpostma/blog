@@ -202,18 +202,27 @@ Some examples:
 
 ## Helpful commands/ideas learned during week 4
 
-| Command   | Description                                       |
-| --------- | ------------------------------------------------- |
-| `ctrl+f`  | move forward in the document                      |
-| `ctrl+b`  | move backward in the document                     |
-| `shift+h` | place cursor at top of screen                     |
-| `shift+m` | place cursor at middle of screen                  |
-| `shift+l` | place cursor at bottom of screen                  |
-| `z enter` | move screen down and keep cursor at some position |
-| `10gg`    | same as `:10`                                     |
-| `_`       | move to first non-empty character in line         |
-| `ctrl+i`  | move cursor to previous position, newer           |
-| `ctrl+o`  | move cursor to previous position, older           |
+| Command      | Description                                                          |
+| ------------ | -------------------------------------------------------------------- |
+| `ctrl+f`     | move forward in the document                                         |
+| `ctrl+b`     | move backward in the document                                        |
+| `shift+h`    | place cursor at top of screen                                        |
+| `shift+m`    | place cursor at middle of screen                                     |
+| `shift+l`    | place cursor at bottom of screen                                     |
+| `z enter`    | move screen down and keep cursor at some position                    |
+| `10gg`       | same as `:10`                                                        |
+| `_`          | move to first non-empty character in line                            |
+| `ctrl+i`     | move cursor to previous position, newer                              |
+| `ctrl+o`     | move cursor to previous position, older                              |
+| `shift+r`    | enter replace mode                                                   |
+| `r`          | replace a single character                                           |
+| `cc`         | change an entire line                                                |
+| `g~<motion>` | switch case inside motion                                            |
+| `g~~`        | switch case of entire line                                           |
+| `guu`        | change line to lowercase                                             |
+| `gUU`        | change line to uppercase                                             |
+| `gU<motion>` | change motion to uppercase                                           |
+| `gJ`         | append below line to current line without space at end of first line |
 
 This week I started to take the Udemy course called
 [Vim Masterclass](https://www.udemy.com/course/vim-commands-cheat-sheet/) by Jason Cannon.
@@ -274,3 +283,6 @@ The capital letter of the register name will append to the register.
 We can type `:reg <register>` to view a specific registers content.
 
 We can use registers with the following patterns, [count][register]operator or [register][count]operator.
+
+You can repeat insert commands any number of times, such as insert 80 asterisks, which would be `80i*` and then escape.
+Or create five new lines with a pound character, `5o#` and then escape.
