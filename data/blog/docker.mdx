@@ -5,3 +5,602 @@ tags: ['docker', 'shell']
 draft: true
 summary: Notes from a course on Docker
 ---
+
+# Docker
+
+**Why use Docker?**
+
+- Make it easy to install and run software on any computer without having to worry about setup or installation of dependencies.
+
+It is more lightweight, economical, and scalable than a virtual machine.
+
+Docker containers share the host operating system whereas VMs have a guest operating system above the host operating system.
+
+**What is Docker?**
+
+- Docker is an entire ecosystem
+- Docker client, server, hub, compose, machine, images
+
+**Image**
+
+- A single file with all of the deps and config required to run a program
+- I can use an image to create a container
+
+**Container**
+
+- A container is a program with its own set of isolated hardware resources
+- A container is an instance of an image, its sole purpose is to run one very specific program
+
+**Docker Client**
+
+- Used to issue commands
+- Helps me interact with Docker server
+
+**Docker Server (aka Docker Daemon)**
+
+- Tool that is responsible for creating images, running containers, etc
+
+Example of running a command:
+Docker client e.g. Docker CLI communicates with Docker Server which does the heavy lifting.
+
+docker run <image> e.g. docker run hello-world
+
+## What is a container?
+
+Need to understand how OS runs on computer.
+
+Most OSes have a Kernel, a running software process that governs access between all the programs running on your computer and all the physical hardware that is connected to your computer.
+
+Chrome -> System Call -> Kernel -> CPU, Memory, HDD, etc.
+
+Kernel is an intermediate layer that governs access between programs and your actual hardware.
+
+Running programs interact with kernel through system calls, which are just like function invocations or APIs from the OS.
+
+Container includes:
+
+- Name spacing
+- Control groups
+- A process or set of processes that has a grouping of resources specifically assigned to it (e.g. CPU, Memory, Disk, Network, etc.)
+
+An image is a filesystem snapshot
+An image also contains a startup command
+
+The image is placed inside the containers filesystem or portion of the hard drive assigned to it
+
+The process is isolated within the container
+
+A container is a running process along with a subset of physical resources that are allocated to that process specifically. The resources are assigned via name spacing. Control groups limit the amount of resources used per process. These are available as Linux specific features.
+
+Docker is technically a Linux virtual machine. The containers are created within the virtual machine. Inside the virtual machine, we have the Linux kernel that is in charge of limiting access and isolating access to the hardware on my computer.
+
+An image is a snapshot of the file system along with a very specific startup command.
+
+## Docker commands
+
+**Run a container with image**
+
+`docker run <image name>`
+
+- docker references the Docker Client
+- The image name is the name of the image to use for this container
+
+`docker run <image name> <command>`
+
+- docker run busybox echo hi there
+- docker run busybox ls
+
+The additional commands must exist within the image's file system, so I cannot use ls on everything, it must be a part of the image filesystem.
+
+**List running containers**
+
+`docker ps`
+
+- Gives me useful information about all running containers
+  CONTAINER ID IMAGE COMMAND CREATED STATUS PORTS NAMES
+- Most often used to get a container's ID so that I can issue commands on a specific container
+
+`docker ps --all`
+
+- shows me all containers that have ever been used on this machine
+
+## Container lifecycle
+
+When does a container actually get shut down?
+
+Creating and starting a container are two separate processes.
+
+docker run = docker create + docker start
+
+`docker create <image name>`
+`docker start <containerId>`
+
+- Creating a container is about the file system
+- Starting it is about the startup command
+
+`docker start -a <containerId>`
+
+`-a` tells Docker to watch for output from the container and print it out to the terminal. Attach to the terminal and give me the output.
+
+**Deletes all stopped containers and build cache**
+
+- This will clear all docker images downloaded from docker hub too
+
+`docker system prune`
+
+## Retrieving log outputs
+
+Say you start up a container without the `-a` flag and don't want to stop and restart the container with the flag.
+
+`docker logs <containerId>`
+
+- This will present all the logs that the container has emitted.
+
+## Stopping containers
+
+Some containers will have processes that continue to run, even when detached from terminal output.
+
+`docker stop <containerId>`
+
+- sigterm message sent to container
+- give process time to shut itself down gracefully
+
+`docker kill <containerId>`
+
+- sigkill message sent to container
+- kill process immediately, shut down, do no additional work
+- no grace period
+
+- Prefer to use STOP command
+- If STOP does not work within 10 seconds, Docker will issue KILL
+
+## Multi-command containers
+
+## Executing commands in running containers
+
+Outside a container, I have no access to anything inside the container through simple means. For example, if my container is running redis, I cannot use the global redis-cli from my terminal to interact with the redis instance within the container.
+
+`docker exec -it <containerId> <command>`
+
+- Give me the ability to enter text (`-it`)
+- Startup a second program in our container
+
+`it` allows me to type input directly into the container
+
+## The purpose of the IT flag
+
+- All of my commands within a container are running in Linux environment
+- Linux envs have three communication channels attached
+- STDIN, STDOUT, STDERR
+- Things I type into my terminal are sent to STDIN
+
+`-it` is actually two separate flags
+
+`-i` allows me to type input directly into the container
+`-t` allows me to attach to the container's terminal, makes text show up pretty, all the text I enter and that is output shows up nicely on the screen, otherwise output is pretty bare bones and basic.
+
+## Getting a command prompt in a container
+
+- This is the most common way to get shell access to my running container
+- Run commands inside my container without having to run docker exec
+
+`docker exec -it <containerId> sh`
+
+`sh` is a command processor or shell
+
+## Starting with a shell
+
+`docker run -it <image> sh`
+
+- Downside is that I am not running any other process, e.g start up my web server
+
+## Container isolation
+
+# Building custom images through Docker
+
+Docker file -> Docker client -> Docker server -> Usable image
+
+- Docker server interprets Docker file and creates an image
+
+Most files follow a specific format:
+
+1. Specify a base image
+2. Run some commands to install additional programs
+3. Specify command to run on container start
+
+## Building a docker file
+
+- Goal: create an image that runs redis-server
+
+FROM <baseImage> // Install an OS, a base image
+RUN <command> // Run commands to install all programs
+CMD <command> // Command to run on startup
+
+cd into directory of build file
+
+`docker build .`
+
+- `.` is the current directory which is the _build context_. This is the set of files we want to encapsulate in the image.
+- Each command results in a step in the build process.
+
+1. Create a base image using FROM command
+2. Docker Daemon downloads the image
+3. Docker server runs the RUN command, it looks for the image from the previous step
+4. That image was used to create a temporary container
+5. The RUN command was executed inside the temporary container
+6. It installed Redis inside the temporary container's file system
+7. We then took a snapshot of that container's new file system
+8. We then shut down temporary container and got the image ready for next instruction. We were left with an image of the original base image with Redis installed. We took a snapshot of that file system.
+9. CMD then adds to that container what the image should do when it is started up as a container.
+10. We end up with an image with a modified primary command.
+11. The output from all of the steps is whatever image was generated from the last step.
+
+## What is a base image?
+
+Analogy: writing a docker file is like being given a brand new computer with no OS and being told install Google Chrome on it.
+
+1. Install OS
+2. Install Chrome
+3. Execute Chrome
+
+## Rebuilds with cache
+
+- This gives Docker a lot of performance.
+- Each instruction we get a new image.
+- Docker uses a cache when steps are the same
+- The FROM command may use one that is already downloaded
+- Installed deps may also be cached and be reused when new RUN steps are added.
+
+- If the order of steps is different, such as changing the order of dep installations, it will not be able to use cache
+
+Each image has:
+
+- File system snapshot e.g. bin, etc, dev, home, proc
+- Startup command
+
+Lesson to learn is to put changes below last command so that Docker can always use the cache.
+
+## Tagging an image with a name
+
+`docker build -t <name> .`
+
+`-t` allows me to tag the image
+
+`docker build -t postmac/redis:latest .`
+
+The convention for name is:
+
+myDockerId/repoName:version
+
+version can be a number too, but the most recent build is usually `latest`
+
+Community images have shorter names as they have been open sourced
+
+The `.` at the end is the build context. It specifies the directory of the files/folders to use for the build.
+
+When running, if I don't specify the version, then the latest is used by default
+
+`docker run postmac/redis`
+
+This entire process is called _tagging the image_.
+
+Technically, the version is the tag.
+
+I can manually do what a Docker file does by starting a container and manually running commands from the container to generate an image that I can use in the future.
+
+# Making real projects with Docker
+
+1. Create NodeJS web app
+2. Create Dockerfile
+3. Build an image from the Dockerfile
+4. Run the image as a container
+5. Connect to web app from a browser
+
+Flow
+
+- Specify a base image
+- Run some commands to install additional programs
+- Specify a command to run on container startup
+
+e.g.
+
+FROM alpine
+RUN npm install
+CMD ["npm", "start"]
+
+In the Docker ecosystem, _alpine_ is synonymous with a small image. It means the image of whatever it is you're pulling is as compact as possible.
+
+Many images have alpine versions. It is a very stripped down image. You might get simple programs like ping, ls, a small text editor like nano, etc.
+
+- None of the files in my project directory are available inside the container by default. This must be manually specified.
+
+`COPY ./ ./` , this would place all my files in the root directory as siblings to bin, etc, home, etc. This is a bad practice.
+
+- first `./` path to folder to copy from on your machine relative to the build context
+- second `./` place to copy stuff to inside the container
+
+## Port mapping/forwarding
+
+- By default, no traffic that is coming into my computer, such as a port, is routed into the container.
+
+- The container has its own isolated set of ports but by default no traffic is directed there.
+
+- We have to set up a port mapping from my computer to the container.
+
+- The above is only with respect to incoming requests. The Docker container can make outgoing requests.
+
+The port forwarding is strictly a run time configuration. In other words, it is something we do when starting up the container. We use the `-p` flag to specify the port mapping.
+
+`-p 8080:8080`
+
+`docker run -p 5000:8080 <imageId>`
+
+- Take incoming requests to port 5000 and forward them to port 8080
+- Route them to port 8080 on the container
+- The application needs to listen on the same target port of the container, e.g. app.listen 5000 means that my container needs to listen on port 5000.
+
+## Specifying a working directory
+
+WORKDIR <referenceToAppFolder>
+
+Example:
+
+`WORKDIR /usr/app`
+
+- There isn't consensus on where to put the working directory.
+
+## Cache busting and rebuilds
+
+- Cannot update an app file without rebuilding the container.
+- We can achieve this with some configuration though.
+
+# Docker compose with multiple local containers
+
+We have two options when we need to set up some networking between two containers.
+
+1. Use Docker CLI's networking features. This is unpleasant as you have to re-run commands each time. This is almost never done.
+
+2. Use Docker compose. This is much easier to use and is the recommended way to set up networking.
+
+## Docker compose
+
+Exists to keep you from having to run repetitive commands using the Docker CLI.
+
+- Makes it easy to start up multiple docker containers at the same time and connect them together with some networking.
+
+- Exists to function as Docker CLI and issue multiple commands more quickly.
+- Automate commands
+- Startup multiple containers at the same time and connect them together
+
+- Uses a special syntax in a yaml file
+- Feed the file to the Docker CLI
+
+By specifying services in the same Docker compose file, Docker automatically networks them together so that they can communicate.
+
+- There is no need to open ports manually.
+
+Docker will automatically resolve the hostname of services defined in the file, e.g. a database. You can also use the full string.
+
+## Running
+
+Docker automatically looks for a compose file when running the following command:
+
+`docker-compose up`
+
+Run in the background:
+
+`docker-compose up -d`
+
+## Rebuild
+
+`docker-compose up --build`
+
+- Tells Docker compose to start up containers and also rebuild
+- Use this whenever you change code
+
+## Stopping containers
+
+Close all running containers from Docker compose
+`docker-compose down`
+
+## How to deal with containers that crashed
+
+Containers where the app crashed are closed
+
+- We can automatically restart it
+- The exit status code is useful for our restart policy
+- no, always, on-failure, unless-stopped
+
+- always is a good choice for a web server where you want it up always
+
+## Print status of my containers from docker compose
+
+Must be run from the directory where the docker-compose.yml file is located. It needs the docker compose file to determine which containers to get the status of.
+
+`docker-compose ps`
+
+# Creating a production-grade workflow
+
+Cycle through the following flow:
+
+Development
+Testing
+Deploying
+
+Docker is just a tool in the normal development flow, e.g. part of pushing, merging a PR, CI, and deployment.
+
+I will want to create multiple docker files
+
+- One for each environment
+
+## Running a docker file with a custom name
+
+`docker build -f`
+
+- `-f` allows me to specify the file directly when it is not explicitly Dockerfile
+
+Because create react app comes with node_modules, and I am installing deps via Dockerfile, I end up with two sets of deps
+
+It is best to delete the node_modules that came with create react app
+
+## Getting changes inside my container
+
+I want changes made to my source code to get automatically propagated into my container
+
+- Rebuild the image...not a great option
+- Do something smarter?
+
+## Docker volumes
+
+- Making a change in a source file and seeing it reflected in the container
+
+**volumes**
+
+- placeholder inside of docker container
+- no longer copy over entire dir
+- more like a reference inside the container
+- the reference points back to the local machine
+- map to /src
+- map to /public
+- map from a folder inside the container to a folder outside the container
+
+`-v` for VOLUME
+
+`docker run -p -v /app/node_modules -v $(pwd):/app <imageId>`
+
+- `-v $(pwd):/app` interpolate the pwd
+- `-v /app/node_modules` This sort of puts a bookmark on the node_modules folder
+
+- mapping between a file/folder in the container and file/folder on my machine
+
+`-v /app/node_modules` with no colon, this means we want this to be a placeholder for the folder that is inside the container, don't map it up to anything. Node modules was already installed in our container and we don't want to override that with the second command where we are looking at our app directory outside of our container.
+
+`-v $(pwd):/app <imageId>` with colon, map the pwd to the /app folder inside the container
+
+sort of like port mapping, pwd:container
+
+changes now get propagated to the container from the project directory
+
+**Docker Compose**
+
+We can use docker compose to make it easier to start up our volumes
+
+- one volume for node_modules
+- one volume for my source code, map it from my machine to container
+
+## Executing tests
+
+- build container
+- execute command
+
+`docker run -it <containerId> npm run test`
+
+- `-it` hooks up the standard input and output of the container to the terminal
+
+This is good for running tests locally
+
+## Live updating tests
+
+I could attach to the existing running container that would allow me to run the tests
+
+- Run docker-compose up
+- Get id of running container with docker ps
+- `docker exec -it <image> npm run test`
+- this reuses the existing container and starts up the test suite inside there
+
+This might be a nice option for adding as a script to package.json
+
+## Docker compose for running tests
+
+Creating another service inside my docker compose file is an option however it isn't perfect. The test output is mixed with the other services output and I cannot type commands in.
+
+Each process has its own stdin and stdout. It is per process.
+
+**Docker attach**
+Attach to container and forward input from my terminal to the container
+
+`docker attach <containerId>`
+
+Docker attach always connects to the primary process, not any other PIDs in the container, cannot therefore route terminal input into other processes in the container
+
+`docker exec -it 1577a221603a sh`
+running ps in the shell will print out all running processes inside the container
+
+PID process id
+
+## Need for Nginx
+
+## Multi-step build process
+
+1. Build phase
+2. Run phase
+
+Allows me to use different base images for different phases
+
+- Do not want all of the deps, just the bundle
+
+# Continuous integration and deployment
+
+These steps assume I am in root dir, with GHA, I might need a ../
+
+- Lint step
+
+- Tell GHA we need a copy of Docker running
+
+- Build our image using Dockerfile.dev
+  `docker build -t postmac/repo-name -f Dockerfile.dev .`
+
+I could name this whatever I want, e.g. my-image, maybe test-image
+
+- Tell GHA to run our test suite
+
+`docker run postmac/repo-name npm run test`
+
+- Tell GHA how to deploy our code to Heroku using the Dockerfile (prod version)
+
+# Tips
+
+For docker compose, depending upon the environment I am working in, I may need to specify a specific docker compose file
+
+`docker-compose -f docker-compose-dev.yml up`
+`docker-compose -f docker-compose-dev.yml up --build`
+`docker-compose -f docker-compose-dev.yml down`
+
+# Exposing ports via the Dockerfile
+
+`EXPOSE 8080`
+
+Some web servers require this but in terms of Docker, it is just for documentation for other developers who look at the Dockerfile
+
+# Multi-container application
+
+# Env vars
+
+1. Build image
+2. Create instance of container from image (run time is when container is started up)
+
+- The env var is not encoded inside the image
+- The image doesn't have memory of the env var
+- Only when the container is created is the env var set up inside of it
+
+`variableName=value`
+
+- Sets a variable in the container at run time
+
+`variablename`
+
+- Sets a variable in the container at run time where the value is taken from your computer
+- .env file
+
+# Multi-container deployments
+
+# syntax=docker/dockerfile:1
+
+FROM node:12-alpine
+WORKDIR /app
+COPY package.json yarn.lock ./
+RUN yarn install --production
+COPY . .
+CMD ["node", "src/index.js"]
+
+I should also cop package-lock.json or yarn.lock on the same line as package.json to lock in the dep versions!
