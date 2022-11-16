@@ -1,0 +1,467 @@
+---
+title: Shell programming notes
+date: '2022-09-01'
+tags: ['linux', 'shell']
+draft: true
+summary: Notes from a shell course
+---
+
+Notes
+
+# User and Account Creation
+
+- Shell scripts can end in .sh but it is not required.
+
+#!/bin/bash
+
+\# = Sharp
+! = Bang
+#! = Shebang
+
+/bin/bash = path to interpreter
+
+- When I execute the script, /bin/bash gets executed and the filename is passed as an argument.
+- Bash then executes everything in the file
+- If I don't specify a path, then the script will be executed by the current shell, which may not be what I want
+- No idea who will execute the script so cannot predict their terminal, so always use a path to an interpreter
+
+File permissions
+r READ
+w WRITE
+X EXECUTE
+
+-123-123-123
+-rwx-rwx-rwx
+
+Group 1 represents the permissions of the owner of the file
+Group 2 represents the permissions of the group of the file
+Group 3 represents the permissions everyone else on the system has
+
+-rw-r--r-- 1 user1 user1 1234 Jan 1 1970 file.txt
+owner group
+
+chmod 755 my-script.sh
+
+Typically
+
+- rwx for self
+- rx for others
+
+These are the "bits" that represent the permissions
+r = 4
+w = 2
+x = 1
+Add those together
+7 for owner
+5 for group
+5 for everyone else
+
+Hence chmod **755** my-script.sh
+
+"chuh-mod"
+
+I can execute the file just by typing ./my-script.sh when in the current directory
+
+- echo is a shell built-in command
+- can use type command, which is also a built-in to see if a command is a shell built-in
+- `type echo`
+- `type -a echo` to see all instances
+
+Using built-ins is a good idea, it is portable, better available by just using built-in rather than full path
+
+help echo | less
+
+`man echo`
+
+- Variable can be thought of as name/value pairs
+- There is no typing or keyword for variables, just assign a value
+- There is no space in the assignment
+- Can contain letters, digits, underscores, cannot start with a digit
+
+# Special variables, command substitution, if statements, conditionals
+
+`man bash`
+
+`/` allows me search, uses vim
+`n` allows next, shift n previous
+
+`type -a id`
+
+The man docs have the following format
+
+`id [OPTIONS]... [USER]`
+This means that id can accept multiple arguments for OPTIONS and one argument for USER
+
+When there are multiple args, I can combine them together
+
+`id -n -u` becomes `id -nu`
+
+❯ type -a whoami
+whoami is /usr/bin/whoami
+
+The above path shows that whoami is a program, so I will use the man page to learn more, `man whoami`
+
+❯ type -a echo
+echo is a shell builtin
+echo is /bin/echo
+
+The above shows that echo is a shell built-in, so I will use `help echo`
+
+`;` command separator, can use new line instead
+
+`if [[ "${UID}" -eq 0]]; then echo ... etc.`
+
+`-z STRING` true if string is empty
+`-n STRING` true if string is NOT empty
+
+`-lt`
+`-gt`
+
+`sudo` super user do
+
+`man test | less`
+
+I should run `man <command>` to learn about all the flags they accept
+
+The UID of the root user is always 0.
+
+# Status, return codes, etc
+
+`exit 1` provides a way to exit the script
+
+If you omit the exit status, then it is set to the last command executed
+
+`-ne` I can view the docs at `help test`
+
+`?` hold the exit status of the most recently executed command
+
+`=` can either be an assignment operator or a comparison operator depending on the context
+
+`==` if using this, string to the right of the operator is used as a pattern and pattern matching is performed
+
+# Get input from the user
+
+stdin = standard input
+stdout = standard output
+stderr = standard error
+
+By default, stdin comes from keyboard, stdout/stderr go to the screen
+stdin can come from other sources
+
+`sudo su - myusername`
+
+`su` switch user, starts a login shell
+
+`ps -ef` show every process
+
+# alternate syntax for chmod
+
+`chmod +x my-script.sh`
+
+# Random data, text and string manipulation
+
+I can use `!e` to invoke the last command that I invoked that began with `e`
+
+`shasum`
+
+I can list all files that have the word `sum` in them by doing the following:
+`ls -l /usr/bin/*sum`
+
+By putting the \* wildcard in the filename
+
+Most commands that accept a file as an input can also accept piped data from another command
+
+If a command is not a shell builtin, then I can use `man <command>`
+
+`fold` folds a string into new liunes
+
+SCRIPT ONE
+
+```bash
+#!/bin/bash
+
+# This script creates a user on the local system
+# You will be prompted to enter the username (login), the person name, and a password
+# The usernamem, password, and host for the account will be displayed
+
+if [[ "${UID}" -ne 0 ]]
+then
+  echo 'Please run with sudo or as root.'
+  exit 1
+fi
+
+# -p is for prompt
+read -p 'Enter the username to create: ' USER_NAME
+read -p 'Enter the person name: ' COMMENT
+read -p 'Enter the password to use for the account: ' PASSWORD
+
+useradd -c "${COMMENT}" -m ${USER_NAME}
+
+if [[ "${?}" -ne 0 ]]
+then
+  echo 'The account could not be created.'
+  exit 1
+fi
+
+# Set the password by piping it into the passwd command
+echo ${PASSWORD} | passwd --stdin ${USER_NAME}
+
+if [[ "${?}" -ne 0 ]]
+then
+  echo 'The password could not be set.'
+  exit 1
+fi
+
+# Expire the password
+passwd -e ${USER_NAME}
+
+# Display username, password, and the host
+
+# Add a blank line, echo by itself with no arg will create a newline
+echo
+
+echo 'username:'
+echo "${USER_NAME}"
+echo
+echo 'password:'
+echo "${PASSWORD}"
+echo
+echo 'host:'
+# HOSTNAME is a shell variable
+echo "${HOSTNAME}"
+
+# Successful exit
+exit 0
+```
+
+```bash
+#!/bin/bash
+
+# This is a comment
+# This script displays various information to the screen
+# Display the text hello
+echo 'Hello'
+
+# Assign a value to a variable
+WORD='script'
+
+# Display the value of the variable
+echo "$WORD"
+
+# When referencing a value, must use $
+# Single quotes prevent the expansion of variables
+# Double quotes allow interpolation
+echo "This is a $WORD"
+
+# Alternate syntax
+echo "This is a ${WORD}"
+
+# Append text to the variable, must ${} syntax
+echo "${WORD}ing"
+
+# Variables are declared in all uppercase by convention
+ENDING='ed'
+
+echo "This is ${WORD}${ENDING}."
+
+# Reassign a variable
+ENDING='ing'
+
+
+```
+
+```bash
+#!/bin/bash
+
+# Display the UID and username of the user executing the script
+# Display if the user is the root user or not
+
+# Display the UID
+echo "Your UID is ${UID}"
+
+# Display the username
+echo "Your username is ${USER}"
+
+# Display if the user is the root user or not
+
+# Store the resolved value of a command to a variable
+USER_NAME=$(id -un)
+
+# Alternate syntax of above, older style
+USER_NAME_ALT=`id -un`
+
+echo "Your username is ${USER_NAME}"
+
+# Always enclose variables in if statements in quotation marks
+# The double bracket syntax is bash specific
+# Single brackets is an older syntax
+if [[ "${UID}" -eq 0 ]]
+then
+  echo "You are the root user"
+else
+  echo "You are not the root user"
+fi
+```
+
+```bash
+#!/bin/bash
+
+# Display the UID and username of the user executing the script
+
+# Display the UID (UID is Shell variable that is set by default)
+echo "Your UID is ${UID}"
+
+# Only display if the UID does NOT match 1000
+UID_TO_TEST_FOR='1000'
+
+if [[ "${UID}" -ne UID_TO_TEST_FOR ]]
+then
+  echo "UID does not match ${UID_TO_TEST_FOR}"
+  exit 1
+fi
+
+# Display the username
+USER_NAME=$(id -un)
+
+# Test if the command succeeded
+if [[ "${?}" -ne 0 ]]
+then
+  echo 'The id command did not execute successfully.'
+  exit 1
+fi
+
+echo "Your username is ${USER_NAME}"
+
+# You can use a string to test conditional
+
+USER_NAME_TO_TEST_FOR='postmac'
+
+if [[ "${USER_NAME}" = "${USER_NAME_TO_TEST_FOR}" ]]
+then
+  echo "Your username matches ${USER_NAME_TO_TEST_FOR}"
+else
+  echo "Your username does not match ${USER_NAME_TO_TEST_FOR}"
+fi
+
+# Test for inequality (!=) for the string
+
+if [[ "${USER_NAME}" != "${USER_NAME_TO_TEST_FOR}" ]]
+then
+  echo "Your username does not match ${USER_NAME_TO_TEST_FOR}"
+  exit 1
+fi
+
+exit 0
+
+
+
+
+```
+
+```bash
+#!/bin/bash
+
+# This script creates and account on the local system.
+# You will be prompted for the account name and password.
+
+# Ask for the user name
+
+read -p 'Enter the username to create: ' USER_NAME
+
+# Ask for the real name
+read -p 'Enter the name of the person who this account is for: ' COMMENT
+
+# Ask for the password
+read -p 'Enter the password to use for the account: ' PASSWORD
+
+# Create the user
+useradd -c "${COMMENT}" -m ${USER_NAME}
+# COMMENT variable is in quotes because it may contain spaces, this allows it to expand
+# in quotes, the arg gets treated as a single item even if it contains spaces
+
+# Set the password for the user
+echo ${USER_NAME} | passwd --stdin ${USER_NAME}
+
+# When use a pipe, it means take the stdout from the preceding command
+# and pass it as the stdin to the following command
+# if the first command fails, it goes to stderr, which is not passed
+
+
+# Force the user to change their password on first login
+
+passwrd -e ${USER_NAME}
+```
+
+```bash
+#!/bin/bash
+
+# This script generates a list of random password
+
+# Random number
+PASSWORD="${RANDOM}"
+echo "${PASSWORD}${PASSWORD}${PASSWORD}"
+
+# Use current date and time
+
+# epoch time
+echo "$(date +%s)"
+PASSWORD="$(date +%s)"
+echo "${PASSWORD}"
+
+# nano second
+echo "$(date +%N)"
+
+# both
+echo "$(date +%s%N)"
+
+# checksum and crytographic hash function
+
+# pipe output of date command into shasum command
+
+echo $(date +%s%N | shasum)
+
+# How to control number of characters
+# head is a program that prints the first n lines of a file or first c chars
+
+PASSWORD=$(date +%s%N | shasum | head -c9)
+
+# Better password
+PASSWORD=$(date +%s%N${RANDOM}${RANDOM}) | shasum | head -c32)
+
+# Randomly select a character from a string
+SPECIAL_CHARS="!@#$%^&*()_+"
+
+# shuf will shuffle a string
+
+MY_SPECIAL_CHAR=$(echo '!@#$%^&*()_+' | fold -w1 | shuf | head -c1)
+
+# shuf does not work in zsh?
+
+echo "${PASSWORD}${MY_SPECIAL_CHAR}"
+```
+
+```bash
+#!/bin/bash
+
+# Display what the user typed on the command line
+
+echo "You executed this command: ${0}"
+
+# $0 is a positional parameter
+
+# Parameter is a variable that is being used inside a shell script
+
+# $0 is the first param, the script itself, aka the command, could contain the path to the script
+# $1 is the first arg
+
+echo "You called script with: ${1}"
+
+# display the path and filename of the script
+
+
+
+# basename is a command that lists the name of the file at the end of a path
+# dirname is another command
+
+echo "You used $(dirname ${0}) as the path to the $(basename ${0}) script"
+```
