@@ -223,6 +223,8 @@ Some examples:
 | `gUU`        | change line to uppercase                                             |
 | `gU<motion>` | change motion to uppercase                                           |
 | `gJ`         | append below line to current line without space at end of first line |
+| `*`          | forward search for word                                              |
+| `#`          | backward search for word                                             |
 
 This week I started to take the Udemy course called
 [Vim Masterclass](https://www.udemy.com/course/vim-commands-cheat-sheet/) by Jason Cannon.
@@ -286,3 +288,14 @@ We can use registers with the following patterns, [count][register]operator or [
 
 You can repeat insert commands any number of times, such as insert 80 asterisks, which would be `80i*` and then escape.
 Or create five new lines with a pound character, `5o#` and then escape.
+
+## Week 5
+
+| Command          | Description                                       |
+| ---------------- | ------------------------------------------------- |
+| `:s/foo/bar/`    | replace foo with bar, one instance only           |
+| `:s/foo/bar/g`   | replace foo with bar, multiple times same line    |
+| `:1,5s/foo/bar/` | replace foo with bar, multiple lines as specified |
+| `:%s/foo/bar/`   | replace foo with bar, entire document             |
+
+`:[range]s/old/new/[flags]`
