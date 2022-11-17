@@ -43,7 +43,7 @@ Docker containers share the host operating system whereas VMs have a guest opera
 Example of running a command:
 Docker client e.g. Docker CLI communicates with Docker Server which does the heavy lifting.
 
-docker run <image> e.g. docker run hello-world
+`docker run image-name e.g. docker run hello-world`
 
 ## What is a container?
 
@@ -190,7 +190,7 @@ Outside a container, I have no access to anything inside the container through s
 
 ## Starting with a shell
 
-`docker run -it <image> sh`
+`docker run -it image-name sh`
 
 - Downside is that I am not running any other process, e.g start up my web server
 
@@ -507,7 +507,7 @@ I could attach to the existing running container that would allow me to run the 
 
 - Run docker-compose up
 - Get id of running container with docker ps
-- `docker exec -it <image> npm run test`
+- `docker exec -it image-name npm run test`
 - this reuses the existing container and starts up the test suite inside there
 
 This might be a nice option for adding as a script to package.json
