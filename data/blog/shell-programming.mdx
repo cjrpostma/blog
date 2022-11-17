@@ -12,11 +12,11 @@ Notes
 
 - Shell scripts can end in .sh but it is not required.
 
-#!/bin/bash
+`#!/bin/bash`
 
-\# = Sharp
-! = Bang
-#! = Shebang
+`\#` = Sharp
+`!` = Bang
+`#!` = Shebang
 
 /bin/bash = path to interpreter
 
@@ -96,12 +96,12 @@ When there are multiple args, I can combine them together
 
 `id -n -u` becomes `id -nu`
 
-❯ type -a whoami
+type -a whoami
 whoami is /usr/bin/whoami
 
 The above path shows that whoami is a program, so I will use the man page to learn more, `man whoami`
 
-❯ type -a echo
+type -a echo
 echo is a shell builtin
 echo is /bin/echo
 

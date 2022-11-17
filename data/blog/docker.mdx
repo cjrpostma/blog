@@ -212,9 +212,9 @@ Most files follow a specific format:
 
 - Goal: create an image that runs redis-server
 
-FROM <baseImage> // Install an OS, a base image
-RUN <command> // Run commands to install all programs
-CMD <command> // Command to run on startup
+`FROM <baseImage>` // Install an OS, a base image
+`RUN <command>` // Run commands to install all programs
+`CMD <command>` // Command to run on startup
 
 cd into directory of build file
 
@@ -343,7 +343,7 @@ The port forwarding is strictly a run time configuration. In other words, it is 
 
 ## Specifying a working directory
 
-WORKDIR <referenceToAppFolder>
+`WORKDIR <referenceToAppFolder>`
 
 Example:
 

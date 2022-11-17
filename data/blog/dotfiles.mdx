@@ -29,7 +29,7 @@ chsh -s /opt/homebrew/bin/zsh
 I can run zsh inside a zsh shell to open a subshell
 I can use the exit command to exit the shell
 
-which <command>
+`which <command>`
 
 - tells us the location of the program
 
@@ -85,9 +85,9 @@ when making a dir, if i mkdir i then need to cd into it, i can do this in a sing
 `function mkcd() { mkdir -p "$@" && cd "$\_"; }`
 
 - the -p flag allows making nested directories
-- "$@" take args passed to my function and pass them to the mkdir command
-- "$\_" take last arg and CD into that location
-- I can type `which <fn name> and the shell will print out my fn
+- `"$@"` take args passed to my function and pass them to the mkdir command
+- `"$\_"` take last arg and CD into that location
+- I can type `which <fn name>` and the shell will print out my fn
 
 mkcd .dotfiles
 
@@ -169,7 +169,7 @@ three
 EOF
 ```
 
-the two >> will append instead of overwriting
+the two `>>` will append instead of overwriting
 
 the shebang is similar to a file extension in that it tells the computer what program to use when it encounters
 the shebang line
@@ -180,7 +180,7 @@ standard input, output, and error have numbers associated with them called file 
 
 STDIN = 0 (keyboard)
 STDOUT = 1 (display)
-STDERR = 2(display)
+STDERR = 2 (display)
 
 `exa install\* 1>> redirected_output` (this is the explicit use of STDOUT, it is implicit usually)
 
