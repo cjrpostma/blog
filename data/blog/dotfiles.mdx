@@ -6,7 +6,6 @@ draft: true
 summary: Organizing dotfiles
 ---
 
-```
 I am taking the course "Dotfiles from start to finish" by Patrick McDonald on Udemy.
 
 I decided to take this course as I begin to customize my VIM configuration.
@@ -83,11 +82,7 @@ FUNCTIONS
 
 when making a dir, if i mkdir i then need to cd into it, i can do this in a single step by creating a function
 
-`
-function mkcd() {
-mkdir -p "$@" && cd "$\_";
-}
-`
+`function mkcd() { mkdir -p "$@" && cd "$\_"; }`
 
 - the -p flag allows making nested directories
 - "$@" take args passed to my function and pass them to the mkdir command
@@ -123,7 +118,8 @@ ln -s source target (e.g real faux)
 ln -s ~/.dotfiles/zshrc ~/.zshrc
 
 dotbot bootstraps my dotfiles
-```
+
+````
 
 only interactive shells source our zshrc file when starting up, non-interactive shells do not source it, so we can't count
 on anything inside of it to be available within a script because a script runs in a non-interactive shell. this is why the zshenv file
@@ -164,7 +160,7 @@ one
 two
 three
 EOF
-```
+````
 
 This will intercept the stdout and direct it to the file heredoc.txt
 
@@ -177,6 +173,7 @@ three
 EOF
 ```
 
+```
 the two >> will append instead of overwriting
 
 the shebang is similar to a file extension in that it tells the computer what program to use when it encounters
@@ -195,3 +192,4 @@ exa install\* 1>> redirected_output (this is the explicit use of STDOUT, it is i
 The above is for the exists function, need to copy the function here
 
 &1 is STDOUT just need the & when the file descriptor is on the right side
+```

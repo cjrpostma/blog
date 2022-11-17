@@ -304,9 +304,11 @@ Flow
 
 e.g.
 
+```bash
 FROM alpine
 RUN npm install
 CMD ["npm", "start"]
+```
 
 In the Docker ecosystem, _alpine_ is synonymous with a small image. It means the image of whatever it is you're pulling is as compact as possible.
 
@@ -596,11 +598,13 @@ Some web servers require this but in terms of Docker, it is just for documentati
 
 # syntax=docker/dockerfile:1
 
+```bash
 FROM node:12-alpine
 WORKDIR /app
 COPY package.json yarn.lock ./
 RUN yarn install --production
 COPY . .
 CMD ["node", "src/index.js"]
+```
 
 I should also cop package-lock.json or yarn.lock on the same line as package.json to lock in the dep versions!
