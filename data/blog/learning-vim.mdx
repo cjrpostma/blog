@@ -300,4 +300,30 @@ Or create five new lines with a pound character, `5o#` and then escape.
 | `at` or `it`     | when editing html tags, use text objects          |
 | `dit`            | delete inside tags                                |
 
-`:[range]s/old/new/[flags]`
+The pattern for search and replace is: `:[range]s/old/new/[flags]`.
+
+This week I am also focusing on macros.
+
+VIM macros record keystrokes into a register. To begin recording a macro, press `q<register>`.
+Then type in the commands for the macro to record. It is generally a nice idea to make
+the final command a movement down to the next line to make repeating the command more convenient.
+
+To stop record, press `q`.
+
+To replay a macro, press `@<register>`. To replay the last played macro, press `@@`.
+
+Best practices:
+
+- Normalize the cursor position, e.g. `0`
+- Position cursor for next replay using `j`
+
+I can replay a macro [count] times, e.g. `5@a`. I can append to a register using the capital letter of the register.
+E.g. `qa` and then later `qA`.
+
+I can hit `ctrl+g` to get the line count of the file. This can be useful when wanting to apply a macro to
+the entire file when it is not possible to see the last line without scrolling down. I can then issue a
+command such as `:27,35normal @a` or current line to end of file with `:.,$ @a`.
+
+To edit a macro, I can just put the contents of the register, modify it, then yank it back into the register.
+
+It is also possible to save macros to the `.vimrc` file.
