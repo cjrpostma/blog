@@ -111,15 +111,13 @@ can use symlink to satisfy both constraints
 
 symlink points to original copy
 
-mv ~/.zhsrc zshrc (we dont have to hide file from self in own repo)
+`mv ~/.zhsrc zshrc `(we dont have to hide file from self in own repo)
 
 ln -s source target (e.g real faux)
 
-ln -s ~/.dotfiles/zshrc ~/.zshrc
+`ln -s ~/.dotfiles/zshrc ~/.zshrc`
 
 dotbot bootstraps my dotfiles
-
-````
 
 only interactive shells source our zshrc file when starting up, non-interactive shells do not source it, so we can't count
 on anything inside of it to be available within a script because a script runs in a non-interactive shell. this is why the zshenv file
@@ -127,15 +125,15 @@ exists
 
 zshenv loads in both interactive and non-interactive shells
 
-bat <<< $(curl someurl) // this will put the output of the command into bat for syntax highlighting, steam output of one command into another command
+`bat <<< $(curl someurl) `// this will put the output of the command into bat for syntax highlighting, steam output of one command into another command
 
 can search for brew packages aka casks using `brew search <name>`
 
 a tap is a repository in brew speak
 
-<< redirect stdin
+`<<` redirect stdin
 
-> > redirect stdout
+`>>` redirect stdout
 
 EOF is a delimiter
 
@@ -145,8 +143,8 @@ fancier version of typing multiline
 
 similar to echo "
 
-dquote>
-dquote>
+`dquote>`
+`dquote>`
 
 "
 
@@ -154,18 +152,16 @@ EOF is a delimiter that marks the beginning and end of some standard input
 this is useful for working with multiline text in bash
 
 ```bash
-
 bat << EOF > heredoc.txt
 one
 two
 three
 EOF
-````
+```
 
 This will intercept the stdout and direct it to the file heredoc.txt
 
 ```bash
-
 bat << EOF >> heredoc.txt
 one
 two
@@ -173,13 +169,12 @@ three
 EOF
 ```
 
-```
 the two >> will append instead of overwriting
 
 the shebang is similar to a file extension in that it tells the computer what program to use when it encounters
 the shebang line
 
-/dev/null is known as the black hole, anything we redirect here disappears
+`/dev/null` is known as the black hole, anything we redirect here disappears
 
 standard input, output, and error have numbers associated with them called file descriptors
 
@@ -187,9 +182,8 @@ STDIN = 0 (keyboard)
 STDOUT = 1 (display)
 STDERR = 2(display)
 
-exa install\* 1>> redirected_output (this is the explicit use of STDOUT, it is implicit usually)
+`exa install\* 1>> redirected_output` (this is the explicit use of STDOUT, it is implicit usually)
 
 The above is for the exists function, need to copy the function here
 
-&1 is STDOUT just need the & when the file descriptor is on the right side
-```
+`&1` is STDOUT just need the & when the file descriptor is on the right side
