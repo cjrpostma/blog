@@ -299,10 +299,11 @@ Or create five new lines with a pound character, `5o#` and then escape.
 | `:%s/foo/bar/`   | replace foo with bar, entire document             |
 | `at` or `it`     | when editing html tags, use text objects          |
 | `dit`            | delete inside tags                                |
+| `>i{`            | indent all text between `{`                       |
 
 The pattern for search and replace is: `:[range]s/old/new/[flags]`.
 
-This week I am also focusing on macros.
+**This week I am also focusing on macros.**
 
 VIM macros record keystrokes into a register. To begin recording a macro, press `q<register>`.
 Then type in the commands for the macro to record. It is generally a nice idea to make
@@ -327,3 +328,23 @@ command such as `:27,35normal @a` or current line to end of file with `:.,$ @a`.
 To edit a macro, I can just put the contents of the register, modify it, then yank it back into the register.
 
 It is also possible to save macros to the `.vimrc` file.
+
+**Another focus is visual mode.**
+
+Use `v` to start characterwise visual mode.
+Use `V` to start linewise visual mode.
+Use `ctrl+v` to start blockwise visual mode.
+
+I can use motions to expand the visual area.
+I can also use text objects to expand the visual area.
+
+I can use most regular VIM commands in visual mode, such as `~`, `c`, `d`, `y`, `r`, `u`, `I`, etc.
+
+I can use `gv` to start visual mode with the same area selected as the last area selected
+the last time I used visual mode.
+
+`o` allows me to switch from one side of a selection to the other, vetically.
+`O` allows me to switch from one side to the other horizontally.
+
+In blockwise visual mode, I can use `$` to select to the end of all lines, even
+if they have varying lengths.
