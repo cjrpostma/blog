@@ -112,102 +112,103 @@ The goal is that you want this cycle to to be super quick. The pro engineer expl
 and anticipates the questions that other people will have in the test plan summary. This allows the PR review
 to be expedited.
 
-HOW DO I INSERT AN IMAGE HERE?
+TODO: insert image here
+![junior versus pro comparison of time spent](/static/images/google.png)
 
 # Quality
 
-Create a plan
+### Create a plan
 
-- try to visualize your approach and come up with a plan
-  -- dont jumop right into coding
-  --crucial with meatier tasks ( greater than 3 days)
-- dont just start coding your first idea, come up with alternative ideas
-- jsut spend at least 15-30 minutes to come up with a plan
-- come up with pros/cons of approaches
+- Try to visualize your approach and come up with a plan
+- Don't jump right into coding, this is crucial with meatier tasks (greater than 3 days)
+- Don't just start coding your first idea, come up with alternative ideas
+- Spend at least 15-30 minutes to come up with a plan for most features, even simple ones
+- Come up with pros/cons of different approaches
 
-Submit clean pull requests
+### Submit clean pull requests
 
-- code is much mroe than the raw lines of code
--
-
-- Make commit focused/atomic, 25-250 lines of code, otherwise robbing yourself of feed back that yiou need
-  explain what PR is trying to accomplish and how
+- Code is much more than the raw lines of code
+- Make commits focused/atomic, 25-250 lines of code, otherwise robbing yourself of feed back that you need
+- Explain what PR is trying to accomplish and how
 - Proactively surface potential problem areas
-  ---- mention on pull request if yiou think there are issues in your PR, be proactive
-  ---- can mention code smells or areas you think are messy in your own PR
+- Mention on pull request if you think there are issues in your PR, be proactive
+- Can mention code smells or areas you think are messy in your own PR
+- Have a great test plan, show what the code is trying to do
+- If on front end, 99% of the time you want to attach video or animated gif
+- If backend, screenshot of postman, curl, etc
+- Providing more info not only shows that your code works but also builds up confidence in your
+  code in the eyes of the rest of your team
+- Doing the above will also result in faster code review because it is easier to review
+- Test plan should communicate a narrative, what changes the code makes
+- State of world, made code change, new state of the world, explain this narrative
+- Prove the change and how it looks/works
+- Call out the significant lines of code (the import parts of the changes)
 
-- Have a great test plan
-  -- Show waht the code is trying to do
-  -- if on front end, 99% of the time you want to attach video or gif
-  if backend, screenshot of postman, curl, etc
-- providing more info not oinly shows that your code works but also builds up confidence in yiour code from rest of yoru
-  team
-- doing the above will also result in faster code review because it is easier to review
-- test plan should communicate a narrative, waht changes the code makes
-- state of world, made code change, new state of the world....explain this narrative
-- prove the change and how it looks/works
-- call out the significant lines of code ( the import parts of the changes)
+### Treat code review feedback as a massive gift
 
-Treat code review feedback as a massive gift
+- Respond quickly and with appreciation
+- Ideally within 1-4 hours, 24 hour turnaround max
+- Code review is one the primary ways you can grow
+- Don't make the same mistake twice, absorb the feedback, if you don't understand the feedback,
+  then ask questions
+- Don't be afraid to hop on a call to explain concepts in PR
 
-- respond quickly and with appreciation
-- ideally within 1-4 hours, 24 hour turnaround max
-- code review is one the primary ways you can grow
-- dont make the same mistake twice, absorb the feedback, if you dont get it, ask questions
-- dont be afraid to hop on a call to explain concepts in PR
+### Review code from others
 
-Review code from others
+- A couple hours per week to review code from other team members even if you cannot approve
+- Help your teammates
+- Find areas for improvement that you can make
 
-- a couple hours per week to review code from other team members even if you cannot approve
-- help your teammates
-- find areas for improvement that you can make
+### Modularize your code
 
-Modularize your code
+- Don't put everything into one class
+- Every component should have a single responsibility
+- Naming is very important, use descriptive names to make this clear
+- More modularization === increased flexibility === increased reusability
 
--dont put everything into one class
+### Keep it consistent
 
-- every component should have a single responsibility
-- namign is very important, use descriptive names to make this clear
-- more modularization ===increased flexibility === increased reusability
+- Follow what the surrounding code is doing
+- Even if the existing patterns are suboptimal, just do the same thing, having two patterns,
+  even if one is better really makes the code harder to read
+- If you are going to bring in a new thing, you need to migrate the whole codebase to use it
+- It is better to just have one pattern, even if that one pattern is a little older
+- If you are going to refactor, do a global scale refactor
+- You can keep mental notes on things to improve
+- Code following different patterns breaks the readers' focus
 
-Keep it consistent
+### Do the simple thing first
 
-- follow what the surrounding code is doing
-- even if the existing patterns are suboptimal, just do the same thing, having two patterns, even if one is better
-  really makes the code harder to read
-  if you are going to bring in a new thing, you need to migrate the whole codebase
-  it is better to just have one pattern, even if that one pattern is a little older
-- if you are going to improve the code, do a global scale refactor
-- you can keep mental notes on thigns to improve
-- code following different patterns breaks the readers' focus
+- Start off with the most basic and minimal frameworks
+- By using the more primitive technology, you will understand the tech better
+- Worst possible code is using powerful framework incorrectly
 
-Do the simple thing first
+### Make it a little better each time
 
-- start off with the most basic and minimal frameworks
-- by using the more primitive technology, you will understand the tech better
-- worst possible code is using powerful framework incorrectly
+- Pay attention to pain points
+- Can you do the same with less code
+- Can you make it more readable
+- Can you make it faster
+- Are there unhandled edge cases
+- Note these things and discuss with other people
 
-Make it a little better each time
+# Where to go next?
 
--pay attention to pain points
+Being proficient at coding is just the beginning. Writing code is operating at a local level.
+The next level is system design which involves the following:
 
--can you do the same with less code
+- Channel code properly
+- Understand relevant stakeholders and existing components
 
-- can you make it more readable
-- can you make it faster
-- are there unhandled edge cases
+# Conclusion and final thoughts
 
-note these things and discuss with other people
+I enjoyed this webinar and found the advice to be true based on my own personal observations.
+I will definitely be focusing on making smaller commits and writing even more thorough test plans
+in my PRs as well as including more screenshots and explanations of how the code I've authored
+changes the state of the world.
 
-Where to go next?
+I also plan to focus on shortening my cycle as a developer from submitting code to landing it in main.
 
-being proficient at coding is just the beginning
-
-- more at a local level
-
-the next level is system design
-
-- channel code properly
-- understand relevant stakeholders and existing comoponents
-  hello, my name id chttid
-  hello, my name is chrischruachrischruschrischruschriiischrisvhc
+Even though it is obvious, protecting time on my calendar to allow for uninterrupted blocks
+is something I will be more closely monitoring at work. I've noticed my own calendar being filled
+with meetings five days per week with fewer focus blocks.
