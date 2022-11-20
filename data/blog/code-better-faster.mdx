@@ -1,9 +1,9 @@
 ---
-title: Notes from a lecture on coding better, faster
+title: How to write better code faster
 date: '2022-11-20'
 tags: ['career']
-draft: true
-summary: TODO
+draft: false
+summary: These are notes I took during a webinar titled, "How To Write Better Code Faster As A Software Engineer" hosted by Taro.
 ---
 
 Today I attended and very much enjoyed a webinar hosted by Rahul Pandey and Alex Chiou of Taro.
@@ -15,7 +15,7 @@ There are two axes to being a good "code machine".
 1. Quality
 2. Velocity
 
-"Code Machine", by the way, is a recognized archetype of staff engineers at certain larger tech companies.
+"Code Machine" is a recognized archetype of staff engineers at certain larger tech companies.
 Another archetype of a staff engineer might be "Product Manager" for those excelling in that skillset.
 
 A common misconception about delivering lots of software quickly is that you have to sacrifice quality.
@@ -63,11 +63,9 @@ of time.
 All tech stacks follow a power law.
 
 - Some components matter far more than others. For example, rendering a list of items on mobile.
-- Should have an opinion on these common components. For example, should know that there are three ways.
-  to do this, this way is better for this reason, etc. Know pros and cons of all approaches for these common items.
+- Should have an opinion on these common components. For example, should know that there are three ways to implement, this way is better for this reason, etc. Know pros and cons of all approaches for these common items.
 - Identify common components to master (e.g. if frontend).
-- Once you have identified these patterns, which may be unique per team/org, get really good at them, at those patterns.
-  Learn how to get really good at these common things/patterns
+- Once you have identified these patterns, which may be unique per team/organization, get really good at them.
 
 ## Do side projects
 
@@ -76,8 +74,7 @@ All tech stacks follow a power law.
 - This builds skills
 - If you want to get better at a skill, just need to spend more time practicing that skill
 - This is especially powerful if you work at a startup and work on frontend
-- Can almost copy/paste code from your personal side project into work work because you've already solved a lot
-  of problems in your side projects.
+- Can almost copy/paste code from your personal side project into work codebase because you've already solved a lot of problems in your side projects
 
 Other benefits of side projects:
 
@@ -96,15 +93,12 @@ the code to getting it landed (e.g. committed to main).
 A novice engineer will:
 
 - Submit code for review and spend little time on adding a summary, test plan, screenshots, etc.
-- Will take longer to respond to code review and code review will take longer because PRs are disorganized and
-  don't have great summary or test plan. Colleagues are less likely to want to review such PRs. Colleagues have
-  less trust in the PR and programmer behind it.
+- Will take longer to respond to code review and code review will take longer because PRs are disorganized and don't have great summary or test plan. Colleagues are less likely to want to review such PRs. Colleagues have less trust in the PR and programmer behind it.
 - Land code into main a greater amount of time in the future from when the PR was submitted
 
 A pro engineer will:
 
-- Submit code for review and spend a longer time here, very carefully explaining the PR, adding videos, screenshots,
-  notes, and areas of question.
+- Submit code for review and spend a longer time here, very carefully explaining the PR, adding videos, screenshots, notes, and areas of question.
 - Code review time is way faster due to step one being more complete
 - Land code -- takes less time, will land the code right away, this time should be as fast as possible.
 
@@ -112,8 +106,9 @@ The goal is that you want this cycle to to be super quick. The pro engineer expl
 and anticipates the questions that other people will have in the test plan summary. This allows the PR review
 to be expedited.
 
-TODO: insert image here
-![junior versus pro comparison of time spent](/static/images/google.png)
+![Comparison of time spent after writing code](/static/images/taro-time-spent-after-code.png)
+
+Credit for image to [Taro](https://www.jointaro.com/).
 
 # Quality
 
@@ -124,6 +119,9 @@ TODO: insert image here
 - Don't just start coding your first idea, come up with alternative ideas
 - Spend at least 15-30 minutes to come up with a plan for most features, even simple ones
 - Come up with pros/cons of different approaches
+
+The above idea matches some advice from a chapter in _A Philosphy of Software Design_ by John Ousterhout.
+It is always a good idea to explore alternatives to your initial approach to a problem.
 
 ### Submit clean pull requests
 
@@ -136,8 +134,7 @@ TODO: insert image here
 - Have a great test plan, show what the code is trying to do
 - If on front end, 99% of the time you want to attach video or animated gif
 - If backend, screenshot of postman, curl, etc
-- Providing more info not only shows that your code works but also builds up confidence in your
-  code in the eyes of the rest of your team
+- Providing more info not only shows that your code works but also builds up confidence in your code in the eyes of the rest of your team
 - Doing the above will also result in faster code review because it is easier to review
 - Test plan should communicate a narrative, what changes the code makes
 - State of world, made code change, new state of the world, explain this narrative
@@ -149,8 +146,7 @@ TODO: insert image here
 - Respond quickly and with appreciation
 - Ideally within 1-4 hours, 24 hour turnaround max
 - Code review is one the primary ways you can grow
-- Don't make the same mistake twice, absorb the feedback, if you don't understand the feedback,
-  then ask questions
+- Don't make the same mistake twice, absorb the feedback, if you don't understand the feedback, then ask questions
 - Don't be afraid to hop on a call to explain concepts in PR
 
 ### Review code from others
