@@ -6,132 +6,115 @@ draft: true
 summary: TODO
 ---
 
-2035 baylor ave 80027 9-2
+Today I attended and very much enjoyed a webinar hosted by Rahul Pandey and Alex Chiou of Taro.
+Both Rahul and Alex are ex-tech leads from FAANG companies. The title of the webinar is
+"How To Write Better Code Faster As A Software Engineer". These are my notes from the webinar.
 
-2 axes of good code machine
+There are two axes to being a good "code machine".
 
-- quality
-- velocity
+1. Quality
+2. Velocity
 
-code machine is a recognized term for staff engineer type. archetypes at meta
-product manager archteype
-code machine archetype
+"Code Machine", by the way, is a recognized archetype of staff engineers at certain larger tech companies.
+Another archetype of a staff engineer might be "Product Manager" for those excelling in that skillset.
 
-you dont have to sacrifice quality for velocity
+A common misconception about delivering lots of software quickly is that you have to sacrifice quality.
+High quality code is conducive to high output. This is important at any level of engineering. Alex states
+that even the highest level of engineers, despite having more meetings, still spend about 20% of their time
+writing code.
 
-high quality code is conducive to high output
-important at any level
+Code quality is by far the most misunderstood metric.
 
-even highest level engineers still spoend 20% of their time writing code
+- A trademark sign of a bad software engineer is low code quality
 
----
+You can always throw more hours to increase quantity, you cannot do so for quality.
 
-code quality is by far the most misunderstood metric
+# Velocity
 
-- trademark sign of a bad software engineer is low quality
+The following are ideas for how to think about and optimize coding velocity.
 
-you can always throw more hours to increase quanitty, cannot do so for quality
+### Go deep, not wide
 
-apply 80/20 rule for quality
+- Pick one tech stack and stick with it
+- Breadth is cheap
+- Takes 2-4 years to become proficient at a stack
+- Avoid being full stack
+- Will eventually hit an inflection point where you can code really fast
+- Don't switch stacks to maximize job opportunity
 
-how to think about/optimize velocity
+### Be tactical with meetings
 
-how to think about/optimize quality
+A common failure mode is to attend every meeting on your calendar.
 
-VELOCITY
+- Juniors commonly do this
+- Skip meetings where you aren't a major player
+- Always retrospect on meeting value
+- Establish focus blocks, a long period of time that is uninterrupted where you can focus
+- Try to have 1-2 days per week with no interruptions/meetings
 
-Go deep, not wide
+Coding is heavily momentum oriented. Context switching is really disruptive, takes a long time to get the
+context and setup the environment to write code.
 
-- pick one tech stack and stick with it
-- breaadth is cheap
-- takes 2-4 years to become proficient at a stack
-- avoid being full stack
-- will eventually hit an inflection point wher eyou can code really fast
-- dont switch stacks to maximize job opportunity
+An engineer with 1 x 8 hours blocks of time will produce twice as much as code as an engineer with 4 x 2 hour blocks
+of time.
 
-Be tactical with meetings
+### Look for patterns
 
--common failure mode is to attend every meeting on your calendar
+All tech stacks follow a power law.
 
-- juniors commonly do this
-- skip meetings where you arent a major player
-- always retrospect on meeting value
-- establish focus blocks
-  --long period of time that is uninterrupted where you can focus
-  -- should be for coding
-  -- coding is heavily momementum oriented
-  --- context switching is really disruptive, takes a long time to get the context to code
-  --- takes time to set up environment, context
+- Some components matter far more than others. For example, rendering a list of items on mobile.
+- Should have an opinion on these common components. For example, should know that there are three ways.
+  to do this, this way is better for this reason, etc. Know pros and cons of all approaches for these common items.
+- Identify common components to master (e.g. if frontend).
+- Once you have identified these patterns, which may be unique per team/org, get really good at them, at those patterns.
+  Learn how to get really good at these common things/patterns
 
-an engineer with 1 x 8 hours will produce twice as much as code as an engineer with 4 x 2 hour blocks
-try to have 1-2 days per week with no interruptions
-
-Look for patterns
-
-all tech stacks follow a power law
-
-- some components matter far more than others
-
-example: rendering a list of items on mobile
-
-- should have an opinion on this
-- e.g. there are three ways to do this, this way is better for this reason, etc. pros and cons
-
-identify common components to master
-
-once you have identified these patterns, which may be unique per team/org,
-get really good at them, at those patterns
-
-learn how to get really good at these common things/patterns
-
-Do side projects
+## Do side projects
 
 - "Life hack" to write more code without overworking
 - Build things for fun on the side
 - This builds skills
-- if you want to get better at a skill, just need to spend more time practicing that skill
+- If you want to get better at a skill, just need to spend more time practicing that skill
+- This is especially powerful if you work at a startup and work on frontend
+- Can almost copy/paste code from your personal side project into work work because you've already solved a lot
+  of problems in your side projects.
 
-expecially ppowerfully if you work at a startup and work on frontend
+Other benefits of side projects:
 
-- can almost copy/paste code from your personal side project into work work
-  because youve already solved a lot of problems in your side projects
+- Fun
+- Builds more holistic product skills
+- Make you a more complete engineer
+- Will help spark creativity at work
+- Will help you learn more modern ways to do things because work projects might persist older patterns
+- Side project allows you to explore modern approaches
 
-other benefits of side project
+### Time spent after writing code
 
-- fun
-- builds more holistic product skills
-- make you a more complete engineer
-- will help spark creativity at work
-- will help you learn more modern ways to do things because work proejcts might persist older patterns
-- side projecvt allows you to explore modern approaches
+What is the breakdown of how time is spent once a PR is submitted. For example, what happens once you write
+the code to getting it landed (e.g. committed to main).
 
-Time spent after writing code
+A novice engineer will:
 
-what is the breakdown of how time is spent
+- Submit code for review and spend little time on adding a summary, test plan, screenshots, etc.
+- Will take longer to respond to code review and code review will take longer because PRs are disorganized and
+  don't have great summary or test plan. Colleagues are less likely to want to review such PRs. Colleagues have
+  less trust in the PR and programmer behind it.
+- Land code into main a greater amount of time in the future from when the PR was submitted
 
-what happens once you write the code to getting it landed (eg committed to main)
+A pro engineer will:
 
-noob engineer
+- Submit code for review and spend a longer time here, very carefully explaining the PR, adding videos, screenshots,
+  notes, and areas of question.
+- Code review time is way faster due to step one being more complete
+- Land code -- takes less time, will land the code right away, this time should be as fast as possible.
 
-- submit code for review
-  -- add summary, test plan, screenshots, does some but not much here
-- receive code review
-- resolve comments, merge conflicts
-- Land code into main
-
-Pro engineer
-
-- submit code for review - spends longer here, screenshots, videos, etc
-  --- very ccarefully explains everything
-- code review time is way faster due to step one being more complete
-- land code -- takes less time, will land the code right away, this time should be as fast as possible
-  want cycle to be super quick
-  pro engineer explains very well what they are doing
-  anticipates the questions that other people will have in the test plan summary
+The goal is that you want this cycle to to be super quick. The pro engineer explains very well what they are doing
+and anticipates the questions that other people will have in the test plan summary. This allows the PR review
+to be expedited.
 
 HOW DO I INSERT AN IMAGE HERE?
 
-QUALITY
+# Quality
 
 Create a plan
 
