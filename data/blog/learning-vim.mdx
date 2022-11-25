@@ -237,24 +237,25 @@ in VIM.
 
 The example he uses to teach this idea is delete a word:
 
-`dw` delete word is an `operation{motion}`
-`dh` delete one character to the left is the same as `X`
-`dl` deleted one character to the right is the same as `x`
-`dk` delete current line and one above it
-`d0` delete from cursor to start of line
-`d$` delete from cursor to end of line
-`D` the same as above but an alterante
-`3dd` delete line three times
-`d3w` delete 3 words
-`2d3w` delete three words two times
+- `dw` delete word is an `operation{motion}`
+- `dh` delete one character to the left is the same as `X`
+- `dl` deleted one character to the right is the same as `x`
+- `dk` delete current line and one above it
+- `d0` delete from cursor to start of line
+- `d$` delete from cursor to end of line
+- `D` the same as above but an alterante
+- `3dd` delete line three times
+- `d3w` delete 3 words
+- `2d3w` delete three words two times
 
 linewise command - a command that operates on an entire line
+
 characterwise command - a command that operates on a character
 
-`!` forces a command in vim
-`!` can be used to execute external commands
-`:help` opens vim help
-`:help <COMMAND>`
+- `!` forces a command in vim
+- `!` can be used to execute external commands
+- `:help` opens vim help
+- `:help <COMMAND>`
 
 A register is a place where cut and copy text is stored, similar to the system clipboard.
 The unamed register is commonly referred to as the default register.
@@ -267,20 +268,20 @@ There are many types of registers in VIM:
 
 Registers are preceded by a `"`.
 
-Unnamed register = `""`
-Numbered registers = `"0`, `"1` ... `"9`
+- Unnamed register = `""`
+- Numbered registers = `"0`, `"1` ... `"9`
 
 The unnamed register contains the last text from `d`, `c`, `s`, `x`, and `y` operations.
 
-`"0` holds the last text yanked (`y`)
-`"1` holds the last text deleted (`d`) or changed (`c`)
-Numbered registers shift with each `d` or `c`
+- `"0` holds the last text yanked (`y`)
+- `"1` holds the last text deleted (`d`) or changed (`c`)
+- Numbered registers shift with each `d` or `c`
 
 To view registers, issue the command `:reg`
 
-`"_` is known as the blackhole register. Nothing happens when sent to this register.
-There are 26 named registers, from a to z.
-The capital letter of the register name will append to the register.
+- `"_` is known as the blackhole register. Nothing happens when sent to this register.
+- There are 26 named registers, from a to z.
+- The capital letter of the register name will append to the register.
 
 We can type `:reg <register>` to view a specific registers content.
 
@@ -331,9 +332,9 @@ It is also possible to save macros to the `.vimrc` file.
 
 **Another focus is visual mode.**
 
-Use `v` to start characterwise visual mode.
-Use `V` to start linewise visual mode.
-Use `ctrl+v` to start blockwise visual mode.
+- Use `v` to start characterwise visual mode.
+- Use `V` to start linewise visual mode.
+- Use `ctrl+v` to start blockwise visual mode.
 
 I can use motions to expand the visual area.
 I can also use text objects to expand the visual area.
@@ -343,8 +344,8 @@ I can use most regular VIM commands in visual mode, such as `~`, `c`, `d`, `y`, 
 I can use `gv` to start visual mode with the same area selected as the last area selected
 the last time I used visual mode.
 
-`o` allows me to switch from one side of a selection to the other, vetically.
-`O` allows me to switch from one side to the other horizontally.
+- `o` allows me to switch from one side of a selection to the other, vetically.
+- `O` allows me to switch from one side to the other horizontally.
 
 In blockwise visual mode, I can use `$` to select to the end of all lines, even
 if they have varying lengths.
