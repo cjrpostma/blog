@@ -1,9 +1,9 @@
 ---
-title: Docker notes
+title: Notes on a Udemy course concerning Docker
 date: '2022-04-01'
 tags: ['docker', 'shell']
-draft: true
-summary: Notes from a course on Docker
+draft: false
+summary: I recently built a microservice that needed to be dockerized and took a course on Udemy to get started.
 ---
 
 # Docker
@@ -63,12 +63,11 @@ Container includes:
 - Control groups
 - A process or set of processes that has a grouping of resources specifically assigned to it (e.g. CPU, Memory, Disk, Network, etc.)
 
-An image is a filesystem snapshot
-An image also contains a startup command
+An image is a filesystem snapshot. An image also contains a startup command.
 
-The image is placed inside the containers filesystem or portion of the hard drive assigned to it
+The image is placed inside the containers filesystem or portion of the hard drive assigned to it.
 
-The process is isolated within the container
+The process is isolated within the container.
 
 A container is a running process along with a subset of physical resources that are allocated to that process specifically. The resources are assigned via name spacing. Control groups limit the amount of resources used per process. These are available as Linux specific features.
 
@@ -134,7 +133,7 @@ Say you start up a container without the `-a` flag and don't want to stop and re
 
 `docker logs <containerId>`
 
-- This will present all the logs that the container has emitted.
+- This will present all the logs that the container has emitted
 
 ## Stopping containers
 
@@ -177,6 +176,7 @@ Outside a container, I have no access to anything inside the container through s
 `-it` is actually two separate flags
 
 `-i` allows me to type input directly into the container
+
 `-t` allows me to attach to the container's terminal, makes text show up pretty, all the text I enter and that is output shows up nicely on the screen, otherwise output is pretty bare bones and basic.
 
 ## Getting a command prompt in a container
@@ -213,15 +213,18 @@ Most files follow a specific format:
 - Goal: create an image that runs redis-server
 
 `FROM <baseImage>` // Install an OS, a base image
+
 `RUN <command>` // Run commands to install all programs
+
 `CMD <command>` // Command to run on startup
 
 cd into directory of build file
 
 `docker build .`
 
-- `.` is the current directory which is the _build context_. This is the set of files we want to encapsulate in the image.
-- Each command results in a step in the build process.
+`.` is the current directory which is the _build context_. This is the set of files we want to encapsulate in the image.
+
+Each command results in a step in the build process.
 
 1. Create a base image using FROM command
 2. Docker Daemon downloads the image
@@ -565,7 +568,9 @@ I could name this whatever I want, e.g. my-image, maybe test-image
 For docker compose, depending upon the environment I am working in, I may need to specify a specific docker compose file
 
 `docker-compose -f docker-compose-dev.yml up`
+
 `docker-compose -f docker-compose-dev.yml up --build`
+
 `docker-compose -f docker-compose-dev.yml down`
 
 # Exposing ports via the Dockerfile
@@ -578,9 +583,8 @@ Some web servers require this but in terms of Docker, it is just for documentati
 
 # Env vars
 
-1. Build image
-2. Create instance of container from image (run time is when container is started up)
-
+- Build image
+- Create instance of container from image (run time is when container is started up)
 - The env var is not encoded inside the image
 - The image doesn't have memory of the env var
 - Only when the container is created is the env var set up inside of it
@@ -607,4 +611,4 @@ COPY . .
 CMD ["node", "src/index.js"]
 ```
 
-I should also cop package-lock.json or yarn.lock on the same line as package.json to lock in the dep versions!
+I should also copy package-lock.json or yarn.lock on the same line as package.json to lock in the dep versions!
