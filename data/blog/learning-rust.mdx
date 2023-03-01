@@ -36,3 +36,41 @@ NPM, PIP, make, etc.
 - Config files in Rust use the .toml extension, which stands for Tom's Obvious Minimal Language.
 - Rust files use the .rs extension.
 - `cargo.toml` is the config file for your project.
+
+`cargo run` is the command to build and run your project. It will only recompile when changes exist.
+
+- Build artifacts are output to the `target` directory.
+- Add `cargo run --release` to compile your release mode code.
+
+## Basic syntax
+
+Rust is a braced language with statement terminated by semicolons. Mimics C in particular.
+
+```rust
+fn main() {
+  let bunnies = 2; // Inferred type
+  let bunnies: i32 = 2; // Explicit type
+  let (bunnies, carrots) = (8, 50); // Destructured variables for multiple variable initialization on single line
+}
+```
+
+Variables are immutable by default.
+
+- Immutable variables by default help with safety, concurrency, and speed.
+- Safety because many bugs cannot occur if valeus never change.
+- Data that never changes can be shared between multiple threads without locks.
+- The compiler can do extra optimizations on unmutable data to increase speed.
+
+I can make a variable mutable by using `mut`:
+
+```rust
+let mut bunnies = 2;
+```
+
+```rust
+const WARP_FACTOR: f64 = 9.9;
+```
+
+Constants cannot be mutable. These are inlined at compile time so they are very fast.
+
+## Scope
