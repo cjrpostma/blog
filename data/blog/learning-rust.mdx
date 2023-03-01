@@ -59,7 +59,7 @@ Variables are immutable by default.
 - Immutable variables by default help with safety, concurrency, and speed.
 - Safety because many bugs cannot occur if valeus never change.
 - Data that never changes can be shared between multiple threads without locks.
-- The compiler can do extra optimizations on unmutable data to increase speed.
+- The compiler can do extra optimizations on immutable data to increase speed.
 
 I can make a variable mutable by using `mut`:
 
@@ -74,3 +74,30 @@ const WARP_FACTOR: f64 = 9.9;
 Constants cannot be mutable. These are inlined at compile time so they are very fast.
 
 ## Scope
+
+```rust
+fn main() {
+  let x = 5;
+  {
+    let y = 99;
+    println!("{}, {}", x, y);
+  }
+  println!("{}, {}", x, y); // Error
+}
+
+```
+
+There is no garbage collector, values are immediately dropped when they go out of scope.
+
+Variables can also be shadowed by having the same variable in an inside scope.
+
+Variables can also be shadowed in the same scope.
+
+```rust
+fn main() {
+  let mut x = 5; // x is mutable
+  let x = x; // x is now immutable
+}
+```
+
+## Memory safety
