@@ -1,0 +1,57 @@
+---
+title: My tmux bindings
+date: '2024-01-28'
+tags: ['editor', 'tmux']
+draft: false
+summary: My current keybindings for my own reference.
+---
+
+## Keyboard bindings
+
+Leader: C-Space
+
+| Command | Description |
+| ------- | ----------- |
+|         |             |
+
+C hjkl pane navigation
+shift alt h or l, window nav
+prefix c - new window
+prefix window num - change window
+prefix n or p - cycle windows
+prefix :swap-window -s 2 -t 1
+prefix & - close window
+
+prefix % split hor
+prefix " - split ver
+
+prefix arrow - switch panes
+prefix { or } - swap panes
+prefix q - show pane number, then press num to switch to it
+
+prefix z - make pane take up full window
+prefix ! - same as above
+
+prefix x - close a pane
+
+tmux - new session
+tmux new -s my-sesh
+
+tmux ls
+or prefix s (list windows)
+prefix w - preview sessions
+tmux attach -t my-session - attach to session
+
+tmux kill-session -a - kill all session
+tmux kill-session -t mysession -kill a session
+
+prefix ( or ) - next prev session
+
+tmux source path to source conf file
+
+selecting
+
+prefix [ - enter select mode
+v to start copy
+y to yank
+rect or line selecxt ctrl v
