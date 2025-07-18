@@ -1,11 +1,11 @@
 const siteMetadata = {
-  title: 'Chris Postma',
-  author: 'Chris Postma',
-  headerTitle: 'Chris Postma',
+  title: 'Think Write',
+  author: 'Chris',
+  headerTitle: 'Think Write',
   description: `A blog to share what I'm learning`,
   language: 'en-us',
   theme: 'system', // system, dark or light
-  siteUrl: 'https://chrispostma.dev',
+  siteUrl: 'https://thinkwrite.today',
   siteRepo: 'https://github.com/cjrpostma/blog',
   siteLogo: '/static/images/logo.png',
   image: '/static/images/avatar.jpg',

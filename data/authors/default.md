@@ -1,5 +1,5 @@
 ---
-name: Chris Postma
+name: Chris
 avatar: /static/images/avatar.png
 occupation: Software Engineer
 company: Gambyt
